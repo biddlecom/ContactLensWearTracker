@@ -1,0 +1,14 @@
+<resources>
+    <!-- Main Activity -->
+    <string name="app_name">Contact Lens Wear Tracker</string>
+    <string name="main_days_worn">Current Days Worn</string>
+    <string name="main_minus_button_description">Minus</string>
+    <string name="main_plus_button_description">Plus</string>
+    <string name="main_reset_button_description">Reset</string>
+    <string name="main_last_five_wear">Last Five Wear Times</string>
+    <string name="main_last_five_newest">Newest</string>
+    <string name="main_last_five_oldest">Oldest</string>
+    <string name="main_average_wear">Average Wear Time:</string>
+    <string name="main_lens_counter_placeholder">5</string>
+    <string name="main_average_wear_placeholder">14</string>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- activity_main.xml main_lens_counter_tv -->
+    <dimen name="main_lens_counter_width_height">200dp</dimen>
+    <dimen name="main_lens_counter_text_size">150sp</dimen>
+
+    <!-- activity_main.xml main_lens_counter_buttons -->
+    <dimen name="main_lens_counter_buttons_width_height">48dp</dimen>
+
+    <!-- activity_main.xml margin sizes -->
+    <dimen name="main_last_five_wear_times_tv_margin_top">48dp</dimen>
+    <dimen name="main_last_five_newest_tv_margin_top">8dp</dimen>
+    <dimen name="main_last_five_newest_tv_margin_start">12dp</dimen>
+    <dimen name="main_last_five_oldest_tv_margin_end">12dp</dimen>
+    <dimen name="linear_layout_margin_top">8dp</dimen>
+    <dimen name="average_wear_time_tv_margin_top">24dp</dimen>
+    <dimen name="average_wear_time_number_tv_margin_start">8dp</dimen>
+    <dimen name="main_minus_button_margin_end">12dp</dimen>
+    <dimen name="main_plus_button_margin_start">12dp</dimen>
+    <dimen name="main_reset_button_margin_top">12dp</dimen>
+
+</resources>
