@@ -9,6 +9,5 @@
     <string name="main_last_five_newest">Newest</string>
     <string name="main_last_five_oldest">Oldest</string>
     <string name="main_average_wear">Average Wear Time:</string>
-    <string name="main_lens_counter_placeholder">5</string>
-    <string name="main_average_wear_placeholder">14</string>
+    <string name="main_lens_counter_placeholder">0</string>
 </resources>
