@@ -19,4 +19,14 @@
     <dimen name="main_plus_button_margin_start">12dp</dimen>
     <dimen name="main_reset_button_margin_top">12dp</dimen>
 
+    <!--activity_credits.xml -->
+    <dimen name="credits_logo_image_width_height">200dp</dimen>
+    <dimen name="credits_logo_image_margin_top">12dp</dimen>
+    <dimen name="credits_logo_image_margin_bottom">16dp</dimen>
+    <dimen name="credits_app_info_margin_bottom">16dp</dimen>
+    <dimen name="credits_contact_heading_margin_bottom">4dp</dimen>
+    <dimen name="credits_contact_email_margin_bottom">16dp</dimen>
+    <dimen name="credits_credit_heading_margin_bottom">4dp</dimen>
+    <dimen name="credits_credit_body_padding_bottom">16dp</dimen>
+
 </resources>

@@ -197,6 +197,10 @@ public class MainActivity extends AppCompatActivity {
     //will give us the average number of days (Average Wear Time) of the users contact lenses.
     //Convert the integer into a string and set it in the "average_wear_time_number_tv" textview.
     //
+    //SEVENTH- Commit the Strings for the Last Five Wear Times and the Average Wear Time into the
+    //Shared Prefs.  We will be committing the Strings not the Integers because we will have to
+    //change the integers to Strings before we place then in their respective TexTViews.
+    //
     //LASTLY- reset the number in the "Current Days Worn" counter TextView to "0" (zero).
     private void resetCurrentDaysWorn() {
 
@@ -264,10 +268,11 @@ public class MainActivity extends AppCompatActivity {
         //times and then show it is in the Average Wear Time number Textview.
         calculateAverageWearTime();
 
+        //STEP SEVEN-
+        //TODO- commit the Last Five Wear (slots 1-5) strings and the Average Wear Time to the Shared Prefs.
+
         //LASTLY- Set the value of the "Current Days Worn" counter TextView to "0" (zero).
         mMainLensCounterTV.setText(getString(R.string.main_lens_counter_placeholder));
-
-        //TODO- commit the Last Five Wear (slots 1-5) strings and the Average Wear Time to the Shared Prefs.
     }
 
     //This method will calculate the Average Wear Time of the user based on the Last Five Wear Times.
