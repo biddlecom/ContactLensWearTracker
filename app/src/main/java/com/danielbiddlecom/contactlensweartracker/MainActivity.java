@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     int mAverageWearTimeInteger = 0;
 
     //Boolean that will hold whether the user is new or not
-    private boolean mIsTheUserNew;
+    boolean mIsTheUserNew;
 
     //Shared Prefs Member Variables.
     String mIsTheUserNewPref = "isTheUserNewPref";
@@ -109,11 +109,8 @@ public class MainActivity extends AppCompatActivity {
         //Finding the Average Wear Time number TextView.
         mAverageWearTimeNumberTV = findViewById(R.id.average_wear_time_number_tv);
 
-        //TODO: check to see if this is the first time the user has opened the app.  If it is the
-        // first time then create all the shared preferences with a current value of zero for all
-        // the values.  IF this is not the first time the user has opened the app then call the method
-        // that will get the current values out of the shared preferences and put them into their
-        // respective text views.
+        //Calling the method that will check to see if this is the first time the user has opened
+        //the app. (Checking to see if this is a new user).
         isTheUserNew();
 
 
@@ -186,8 +183,8 @@ public class MainActivity extends AppCompatActivity {
 
     //This method has multiple steps.
     //
-    //High Level picture: we are shifting the numbers of the Last Five
-    //Wear Times one spot to the right.  One will move to two, two will move to three, three will move
+    //High Level picture: we are shifting the numbers of the "Last Five
+    //Wear Times" one spot to the right.  One will move to two, two will move to three, three will move
     //to four, four will move to five and five will drop off and disappear. Spot one is currently
     //vacant.  Spot one will be filled by the Current Days Worn value. To accomplish this we will
     //have to work in reverse, starting with position five and working backwards to position one and
@@ -290,27 +287,36 @@ public class MainActivity extends AppCompatActivity {
         //Setting the new Slot One value in the mMainLastFiveSlotOneTV TextView for the user to see.
         mMainLastFiveSlotOneTV.setText(mLastFiveSlotOneString);
 
-        //STEP SIX- calling the method that will calculate the Average Wear Time based on the last five wear
-        //times and then show it is in the Average Wear Time number Textview.
+        //STEP SIX- calling the method that will calculate the Average Wear Time based on the last
+        //five wear times and then set it on the Average Wear Time number Textview.
         calculateAverageWearTime();
 
         //STEP SEVEN-
-        //TODO- commit the Last Five Wear (slots 1-5) strings and the Average Wear Time to the Shared Prefs.
+        //Commit the Last Five Wear Times (slots 1-5) strings and the Average Wear Time to the
+        //Shared Preferences.  This is accomplished in the calculateAverageWearTime() method from
+        //step six.
 
-        //LASTLY- Set the value of the "Current Days Worn" counter TextView to "0" (zero).
+        //LASTLY- (Re)set the value of the "Current Days Worn" counter TextView to "0" (zero).
         mMainLensCounterTV.setText(getString(R.string.main_lens_counter_placeholder));
     }
 
+    //TODO: DAN- there is something wrong with this code because it is showing ALL the toast messages
+    // back to back when we hit the reset button. THANKFULLY, everything else seems to be working just fine.
     //This method will calculate the Average Wear Time of the user based on the Last Five Wear Times.
     //Then it will convert that integer into a string and store it in the mAverageWearTimeString
     //member variable so that it can later be set on the Average Wear Time number TextView.
+    //We will also be saving the current values of the "Last Five Wear Times" into the shared preferences.
     private void calculateAverageWearTime() {
         //Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
-        //If they are zeros then the slot likely hasn't been filled in with user generated data yet.
+        //If they are all zeros then the slot likely hasn't been filled in with user generated data yet.
         //For example, if the user has only been using the app for a few weeks.
         if(mLastFiveSlotOneInteger == 0 && mLastFiveSlotTwoInteger == 0 && mLastFiveSlotThreeInteger == 0
         && mLastFiveSlotFourInteger ==0 && mLastFiveSlotFiveInteger == 0){
             mAverageWearTimeNumberTV.setText(R.string.main_lens_counter_placeholder);
+
+            //There is no need to commit the "Last Five Wear Times" and the "Average Wear Time" to
+            //the shared preferences because they were added as zero ("0") into the shared
+            //preferences when we initially set them up.  This was done in the isTheUserNew() method.
         } else {
             //Show a toast message letting the user know that something went wrong and to try again.
             Toast.makeText(MainActivity.this,
@@ -322,7 +328,22 @@ public class MainActivity extends AppCompatActivity {
         //the value of slot one.
         if(mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger == 0 && mLastFiveSlotThreeInteger == 0
                 && mLastFiveSlotFourInteger ==0 && mLastFiveSlotFiveInteger == 0){
+
+            //Getting the string values of slots 1-2 so that we can save them into the
+            //shared preferences later.
+            mLastFiveSlotOneString = String.valueOf(mLastFiveSlotOneInteger);
+
+            //Setting the Slot One value on the Average Wear Time textview.
             mAverageWearTimeNumberTV.setText(mLastFiveSlotOneString);
+
+            //Saving the mLastFiveSlotOneString into the mLastFiveSlotOnePref.
+            //Also saving the mAverageWearTimeString into the mAverageWearTimePref
+            //Getting the Contact Lens Wear Tracker Shared Preferences.
+            SharedPreferences contactLensLastFiveSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor sharedPrefsSlotOneEditor = contactLensLastFiveSharedPreferences.edit();
+            sharedPrefsSlotOneEditor.putString(mLastFiveSlotOnePref, mLastFiveSlotOneString);
+            sharedPrefsSlotOneEditor.putString(mAverageWearTimePref, mLastFiveSlotOneString);
+            sharedPrefsSlotOneEditor.apply();
         } else {
             //Show a toast message letting the user know that something went wrong and to try again.
             Toast.makeText(MainActivity.this,
@@ -334,6 +355,11 @@ public class MainActivity extends AppCompatActivity {
         //together and divide by 2 to get the Average Wear Time number.
         if(mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger == 0
                 && mLastFiveSlotFourInteger ==0 && mLastFiveSlotFiveInteger == 0){
+
+            //Getting the string values of slots 1-2 so that we can save them into the
+            //shared preferences later.
+            mLastFiveSlotOneString = String.valueOf(mLastFiveSlotOneInteger);
+            mLastFiveSlotTwoString = String.valueOf(mLastFiveSlotTwoInteger);
 
             //Adding the first two "Last Five Wear Times" slots up and storing it in the
             //tempAverageWearTimeInteger.
@@ -349,6 +375,16 @@ public class MainActivity extends AppCompatActivity {
 
             //Setting the mAverageWearTimeString on the Average Wear Time number TextView.
             mAverageWearTimeNumberTV.setText(mAverageWearTimeString);
+
+            //Saving the mLastFiveSlotStrings (slot 1-2) into the mLastFiveSlotPrefs (1-2).
+            //Also saving the mAverageWearTimeString into the mAverageWearTimePref
+            //Getting the Contact Lens Wear Tracker Shared Preferences.
+            SharedPreferences contactLensLastFiveSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor sharedPrefsSlotOneTwoEditor = contactLensLastFiveSharedPreferences.edit();
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotOnePref, mLastFiveSlotOneString);
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotTwoPref, mLastFiveSlotTwoString);
+            sharedPrefsSlotOneTwoEditor.putString(mAverageWearTimePref, mAverageWearTimeString);
+            sharedPrefsSlotOneTwoEditor.apply();
         } else {
             //Show a toast message letting the user know that something went wrong and to try again.
             Toast.makeText(MainActivity.this,
@@ -360,6 +396,12 @@ public class MainActivity extends AppCompatActivity {
         //first three together and divide by 3 to get the Average Wear Time number.
         if(mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger != 0
                 && mLastFiveSlotFourInteger ==0 && mLastFiveSlotFiveInteger == 0){
+
+            //Getting the string values of slots 1-3 so that we can save them into
+            //the shared preferences later.
+            mLastFiveSlotOneString = String.valueOf(mLastFiveSlotOneInteger);
+            mLastFiveSlotTwoString = String.valueOf(mLastFiveSlotTwoInteger);
+            mLastFiveSlotThreeString = String.valueOf(mLastFiveSlotThreeInteger);
 
             //Adding the first three "Last Five Wear Times" slots up and storing it in the
             //tempAverageWearTimeInteger.
@@ -376,6 +418,17 @@ public class MainActivity extends AppCompatActivity {
 
             //Setting the mAverageWearTimeString on the Average Wear Time number TextView.
             mAverageWearTimeNumberTV.setText(mAverageWearTimeString);
+
+            //Saving the mLastFiveSlotStrings (slot 1-3) into the mLastFiveSlotPrefs (1-3).
+            //Also saving the mAverageWearTimeString into the mAverageWearTimePref
+            //Getting the Contact Lens Wear Tracker Shared Preferences.
+            SharedPreferences contactLensLastFiveSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor sharedPrefsSlotOneTwoEditor = contactLensLastFiveSharedPreferences.edit();
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotOnePref, mLastFiveSlotOneString);
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotTwoPref, mLastFiveSlotTwoString);
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotThreePref, mLastFiveSlotThreeString);
+            sharedPrefsSlotOneTwoEditor.putString(mAverageWearTimePref, mAverageWearTimeString);
+            sharedPrefsSlotOneTwoEditor.apply();
         } else {
             //Show a toast message letting the user know that something went wrong and to try again.
             Toast.makeText(MainActivity.this,
@@ -387,6 +440,13 @@ public class MainActivity extends AppCompatActivity {
         //the first four together and divide by 4 to get the Average Wear Time number.
         if(mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger != 0
                 && mLastFiveSlotFourInteger !=0 && mLastFiveSlotFiveInteger == 0){
+
+            //Getting the string values of slots 1-4 so that we can save them into
+            //the shared preferences later.
+            mLastFiveSlotOneString = String.valueOf(mLastFiveSlotOneInteger);
+            mLastFiveSlotTwoString = String.valueOf(mLastFiveSlotTwoInteger);
+            mLastFiveSlotThreeString = String.valueOf(mLastFiveSlotThreeInteger);
+            mLastFiveSlotFourString = String.valueOf(mLastFiveSlotFourInteger);
 
             //Adding the first four "Last Five Wear Times" slots up and storing it in the
             //tempAverageWearTimeInteger.
@@ -403,6 +463,18 @@ public class MainActivity extends AppCompatActivity {
 
             //Setting the mAverageWearTimeString on the Average Wear Time number TextView.
             mAverageWearTimeNumberTV.setText(mAverageWearTimeString);
+
+            //Saving the mLastFiveSlotStrings (slot 1-4) into the mLastFiveSlotPrefs (1-4).
+            //Also saving the mAverageWearTimeString into the mAverageWearTimePref
+            //Getting the Contact Lens Wear Tracker Shared Preferences.
+            SharedPreferences contactLensLastFiveSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor sharedPrefsSlotOneTwoEditor = contactLensLastFiveSharedPreferences.edit();
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotOnePref, mLastFiveSlotOneString);
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotTwoPref, mLastFiveSlotTwoString);
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotThreePref, mLastFiveSlotThreeString);
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotFourPref, mLastFiveSlotFourString);
+            sharedPrefsSlotOneTwoEditor.putString(mAverageWearTimePref, mAverageWearTimeString);
+            sharedPrefsSlotOneTwoEditor.apply();
         } else {
             //Show a toast message letting the user know that something went wrong and to try again.
             Toast.makeText(MainActivity.this,
@@ -414,6 +486,14 @@ public class MainActivity extends AppCompatActivity {
         //them all together and divide by 5 to get the Average Wear Time number.
         if(mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger != 0
                 && mLastFiveSlotFourInteger !=0 && mLastFiveSlotFiveInteger != 0){
+
+            //Getting the string values of slots 1-5 so that we can save them into
+            //the shared preferences later.
+            mLastFiveSlotOneString = String.valueOf(mLastFiveSlotOneInteger);
+            mLastFiveSlotTwoString = String.valueOf(mLastFiveSlotTwoInteger);
+            mLastFiveSlotThreeString = String.valueOf(mLastFiveSlotThreeInteger);
+            mLastFiveSlotFourString = String.valueOf(mLastFiveSlotFourInteger);
+            mLastFiveSlotFiveString = String.valueOf(mLastFiveSlotFiveInteger);
 
             //Adding all the "Last Five Wear Times" slots up and storing it in the
             //tempAverageWearTimeInteger.
@@ -430,6 +510,19 @@ public class MainActivity extends AppCompatActivity {
 
             //Setting the mAverageWearTimeString on the Average Wear Time number TextView.
             mAverageWearTimeNumberTV.setText(mAverageWearTimeString);
+
+            //Saving the mLastFiveSlotStrings (slot 1-5) into the mLastFiveSlotPrefs (1-5).
+            //Also saving the mAverageWearTimeString into the mAverageWearTimePref
+            //Getting the Contact Lens Wear Tracker Shared Preferences.
+            SharedPreferences contactLensLastFiveSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor sharedPrefsSlotOneTwoEditor = contactLensLastFiveSharedPreferences.edit();
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotOnePref, mLastFiveSlotOneString);
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotTwoPref, mLastFiveSlotTwoString);
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotThreePref, mLastFiveSlotThreeString);
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotFourPref, mLastFiveSlotFourString);
+            sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotFivePref, mLastFiveSlotFiveString);
+            sharedPrefsSlotOneTwoEditor.putString(mAverageWearTimePref, mAverageWearTimeString);
+            sharedPrefsSlotOneTwoEditor.apply();
         } else {
             //Show a toast message letting the user know that something went wrong and to try again.
             Toast.makeText(MainActivity.this,
@@ -439,10 +532,10 @@ public class MainActivity extends AppCompatActivity {
 
     //This method will check to see is the user is new or not.
     //If the user is new then we will create all the shared prefs with a value of zero.
-    //If the user is NOT new then we will call the method that will get all the current lens wear
-    //values and then set them onto their respective text views.
+    //If the user is NOT new then we will get all the current lens wear values and then set them
+    //onto their respective text views.
     private void isTheUserNew(){
-        //Getting the Contact Lens Wear Tracker Preferences.
+        //Getting the Contact Lens Wear Tracker Shared Preferences.
         SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
 
         //Perform a check to see if the CONTACT_LENS_WEAR_TRACKER_PREFS contains the key "mIsTheUserNewPref".
@@ -453,47 +546,67 @@ public class MainActivity extends AppCompatActivity {
             //longer new to the app.
             //Save the values into the Shared Preferences.
             SharedPreferences.Editor sharedPrefsCurrentDaysWornEditor = contactLensWearSharedPreferences.edit();
+            sharedPrefsCurrentDaysWornEditor.putBoolean(mIsTheUserNewPref, mIsTheUserNew);
             sharedPrefsCurrentDaysWornEditor.putString(mCurrentLensCountPref, getString(R.string.main_lens_counter_placeholder));
+            sharedPrefsCurrentDaysWornEditor.putString(mLastFiveSlotOnePref, getString(R.string.main_lens_counter_placeholder));
+            sharedPrefsCurrentDaysWornEditor.putString(mLastFiveSlotTwoPref, getString(R.string.main_lens_counter_placeholder));
+            sharedPrefsCurrentDaysWornEditor.putString(mLastFiveSlotThreePref, getString(R.string.main_lens_counter_placeholder));
+            sharedPrefsCurrentDaysWornEditor.putString(mLastFiveSlotFourPref, getString(R.string.main_lens_counter_placeholder));
+            sharedPrefsCurrentDaysWornEditor.putString(mLastFiveSlotFivePref, getString(R.string.main_lens_counter_placeholder));
+            sharedPrefsCurrentDaysWornEditor.putString(mAverageWearTimePref, getString(R.string.main_lens_counter_placeholder));
             sharedPrefsCurrentDaysWornEditor.apply();
+
             //Update the "Current Days Worn" text view with the starting value of zero ("0").
             mMainLensCounterTV.setText(R.string.main_lens_counter_placeholder);
+
+            //Update the "Last Five Wear Times" text views with the starting value of zero ("0").
+            mMainLastFiveSlotOneTV.setText(R.string.main_lens_counter_placeholder);
+            mMainLastFiveSlotTwoTV.setText(R.string.main_lens_counter_placeholder);
+            mMainLastFiveSlotThreeTV.setText(R.string.main_lens_counter_placeholder);
+            mMainLastFiveSlotFourTV.setText(R.string.main_lens_counter_placeholder);
+            mMainLastFiveSlotFiveTV.setText(R.string.main_lens_counter_placeholder);
+
+            //Update the "Average Wear Time" text views with the starting value of zero ("0").
+            mAverageWearTimeNumberTV.setText(R.string.main_lens_counter_placeholder);
+
         } else {
-            //A mIsTheUserNewPref shared preference exists. Get the value of the mIsTheUserNewPref
-            //shared preference and set it on the Current Days Worn text view.
-            mCurrentLensCountString = contactLensWearSharedPreferences.getString(mCurrentLensCountPref, getString(R.string.main_lens_counter_placeholder));
+            //The user is NOT new so we will get all the values from the shared preferences and put
+            //them into their respective text views.
+
+            //Get the value of the mCurrentLensCountPref shared preference and update the value of the
+            //"Current Days Worn" text view.
+            mCurrentLensCountString = contactLensWearSharedPreferences.getString(mCurrentLensCountPref,
+                    getString(R.string.main_lens_counter_placeholder));
             mMainLensCounterTV.setText(mCurrentLensCountString);
+
+            //Getting the values of the mLastFiveSlotPrefs (slots 1-5) from the shared preferences
+            //and update the value of the "Last Five Wear Times" text views.
+            //Last five Slot One.
+            mLastFiveSlotOneString = contactLensWearSharedPreferences.getString(mLastFiveSlotOnePref,
+                    getString(R.string.main_lens_counter_placeholder));
+            mMainLastFiveSlotOneTV.setText(mLastFiveSlotOneString);
+            //Last five Slot Two.
+            mLastFiveSlotTwoString = contactLensWearSharedPreferences.getString(mLastFiveSlotTwoPref,
+                    getString(R.string.main_lens_counter_placeholder));
+            mMainLastFiveSlotTwoTV.setText(mLastFiveSlotTwoString);
+            //Last five Slot Three.
+            mLastFiveSlotThreeString = contactLensWearSharedPreferences.getString(mLastFiveSlotThreePref,
+                    getString(R.string.main_lens_counter_placeholder));
+            mMainLastFiveSlotThreeTV.setText(mLastFiveSlotThreeString);
+            //Last five Slot Four.
+            mLastFiveSlotFourString = contactLensWearSharedPreferences.getString(mLastFiveSlotFourPref,
+                    getString(R.string.main_lens_counter_placeholder));
+            mMainLastFiveSlotFourTV.setText(mLastFiveSlotFourString);
+            //Last five Slot Five.
+            mLastFiveSlotFiveString = contactLensWearSharedPreferences.getString(mLastFiveSlotFivePref,
+                    getString(R.string.main_lens_counter_placeholder));
+            mMainLastFiveSlotFiveTV.setText(mLastFiveSlotFiveString);
+
+            //Getting the values of the mAverageWearTimePref from the shared preferences and update
+            //the value of the "Average Wear Time" text view.
+            mAverageWearTimeString = contactLensWearSharedPreferences.getString(mAverageWearTimePref,
+                    getString(R.string.main_lens_counter_placeholder));
+            mAverageWearTimeNumberTV.setText(mAverageWearTimeString);
         }
-
-        //TODO: continue on with this method and add/get the values for the Last Five Wear Times and
-        // the Average Wear Time text views.
-
-
-        //TODO: in the end if the user is not new then call this method below.
-        // DAN- we will have to rethink this method. I can't think clear tonight.
-        //Calling the method that will get the "Current Days Worn", "Last Five Wear Times" and the
-        //"Average Wear Time" variables from the shared preferences and then put them into their
-        //respective text views.
-        getTheLensWearValuesFromSharedPrefs();
-
-
-
-
-
     }
-
-    //This method will get the "Current Days Worn", "Last Five Wear Times" and the "Average Wear Time"
-    //variables from the shared preferences and then put them in their respective text views.
-    private void getTheLensWearValuesFromSharedPrefs(){
-        //Getting the Contact Lens Wear Tracker Preferences.
-        SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
-        //Get the value of the mCurrentLensCountPref shared preference and update the value of the
-        //"Current Days Worn" text view.
-        mCurrentLensCountString = contactLensWearSharedPreferences.getString(mCurrentLensCountPref,
-                getString(R.string.main_lens_counter_placeholder));
-        mMainLensCounterTV.setText(mCurrentLensCountString);
-    }
-
-
-
-
 }
