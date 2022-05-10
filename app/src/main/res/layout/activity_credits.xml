@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/credits_contact_email_margin_bottom"
             android:gravity="center"
-            android:text="@string/credits_contact_email"
+            android:text="@string/credits_contact_email_address"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView

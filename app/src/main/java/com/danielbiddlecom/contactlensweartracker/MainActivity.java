@@ -2,6 +2,7 @@ package com.danielbiddlecom.contactlensweartracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -38,7 +39,11 @@ public class MainActivity extends AppCompatActivity {
     int mLastFiveSlotFiveInteger = 0;
     int mAverageWearTimeInteger = 0;
 
+    //Boolean that will hold whether the user is new or not
+    private boolean mIsTheUserNew;
+
     //Shared Prefs Member Variables.
+    String mIsTheUserNewPref = "isTheUserNewPref";
     String mCurrentLensCountPref = "currentLensCountPref";
     String mLastFiveSlotOnePref = "lastFiveSlotOnePref";
     String mLastFiveSlotTwoPref = "lastFiveSlotTwoPref";
@@ -104,6 +109,13 @@ public class MainActivity extends AppCompatActivity {
         //Finding the Average Wear Time number TextView.
         mAverageWearTimeNumberTV = findViewById(R.id.average_wear_time_number_tv);
 
+        //TODO: check to see if this is the first time the user has opened the app.  If it is the
+        // first time then create all the shared preferences with a current value of zero for all
+        // the values.  IF this is not the first time the user has opened the app then call the method
+        // that will get the current values out of the shared preferences and put them into their
+        // respective text views.
+        isTheUserNew();
+
 
     } //End of OnCreate.
 
@@ -125,16 +137,23 @@ public class MainActivity extends AppCompatActivity {
         //"Current Days Worn".
         if (mCurrentLensCountInteger >= 0) {
             //Converting the current value of the CurrentLensCountInteger back to a String.
-            String newString = String.valueOf(mCurrentLensCountInteger);
+            mCurrentLensCountString = String.valueOf(mCurrentLensCountInteger);
             //Setting the new value in the Current Lens Count TextView for the user to see.
-            mMainLensCounterTV.setText(newString);
+            mMainLensCounterTV.setText(mCurrentLensCountString);
         } else {
             //Set the value of the "Current Days Worn" counter TextView to "0".
             mMainLensCounterTV.setText(getString(R.string.main_lens_counter_placeholder));
         }
 
-        //TODO: Put this value (current days worn) in the shared prefs so it will be remembered when
-        // the user reopens the app in the future.
+        //Putting the new current value (after the decrement) of the "Current Days Worn" into the
+        //shared preferences.
+        //Getting an instance of the Contact Lens Wear Tracker shared preference.
+        SharedPreferences sharedPreferencesCurrentWear = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+        //Getting the shared preference in edit mode so that we can put the Current Lens Wear Count
+        //into the Contact Lens Wear Tracker shared preference.
+        SharedPreferences.Editor currentWearSharedPrefsEditor = sharedPreferencesCurrentWear.edit();
+        currentWearSharedPrefsEditor.putString(mCurrentLensCountPref, mCurrentLensCountString);
+        currentWearSharedPrefsEditor.apply();
     }
 
     //This method will increase the number in the "Current Days Worn" counter TextView by "1".
@@ -150,12 +169,19 @@ public class MainActivity extends AppCompatActivity {
         //Increasing the value of the Current Lens Count by "1" each time the button is clicked.
         mCurrentLensCountInteger++;
         //Converting the current value of the CurrentLensCountInteger back to a String.
-        String newString = String.valueOf(mCurrentLensCountInteger);
+        mCurrentLensCountString = String.valueOf(mCurrentLensCountInteger);
         //Setting the new value in the Current Lens Count TextView for the user to see.
-        mMainLensCounterTV.setText(newString);
+        mMainLensCounterTV.setText(mCurrentLensCountString);
 
-        //TODO: Put this value (current days worn) in the shared prefs so it will be remembered when
-        // the user reopens the app in the future.
+        //Putting the new current value (after the increment) of the "Current Days Worn" into the
+        //shared preferences.
+        //Getting an instance of the Contact Lens Wear Tracker shared preference.
+        SharedPreferences sharedPreferencesCurrentWear = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+        //Getting the shared preference in edit mode so that we can put the Current Lens Wear Count
+        //into the Contact Lens Wear Tracker shared preference.
+        SharedPreferences.Editor currentWearSharedPrefsEditor = sharedPreferencesCurrentWear.edit();
+        currentWearSharedPrefsEditor.putString(mCurrentLensCountPref, mCurrentLensCountString);
+        currentWearSharedPrefsEditor.apply();
     }
 
     //This method has multiple steps.
@@ -410,6 +436,64 @@ public class MainActivity extends AppCompatActivity {
                     getString(R.string.main_error_calculating_last_five), Toast.LENGTH_LONG).show();
         }
     }
+
+    //This method will check to see is the user is new or not.
+    //If the user is new then we will create all the shared prefs with a value of zero.
+    //If the user is NOT new then we will call the method that will get all the current lens wear
+    //values and then set them onto their respective text views.
+    private void isTheUserNew(){
+        //Getting the Contact Lens Wear Tracker Preferences.
+        SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+
+        //Perform a check to see if the CONTACT_LENS_WEAR_TRACKER_PREFS contains the key "mIsTheUserNewPref".
+        if (!contactLensWearSharedPreferences.contains(mIsTheUserNewPref)) {
+            //There is no mIsTheUserNewPref shared preference. The user is opening the app for the
+            //very first time.  We will create all the shared preferences and give them all a value
+            //of zero. We will also then set the mIsTheUserNewPref to false since the user is no
+            //longer new to the app.
+            //Save the values into the Shared Preferences.
+            SharedPreferences.Editor sharedPrefsCurrentDaysWornEditor = contactLensWearSharedPreferences.edit();
+            sharedPrefsCurrentDaysWornEditor.putString(mCurrentLensCountPref, getString(R.string.main_lens_counter_placeholder));
+            sharedPrefsCurrentDaysWornEditor.apply();
+            //Update the "Current Days Worn" text view with the starting value of zero ("0").
+            mMainLensCounterTV.setText(R.string.main_lens_counter_placeholder);
+        } else {
+            //A mIsTheUserNewPref shared preference exists. Get the value of the mIsTheUserNewPref
+            //shared preference and set it on the Current Days Worn text view.
+            mCurrentLensCountString = contactLensWearSharedPreferences.getString(mCurrentLensCountPref, getString(R.string.main_lens_counter_placeholder));
+            mMainLensCounterTV.setText(mCurrentLensCountString);
+        }
+
+        //TODO: continue on with this method and add/get the values for the Last Five Wear Times and
+        // the Average Wear Time text views.
+
+
+        //TODO: in the end if the user is not new then call this method below.
+        // DAN- we will have to rethink this method. I can't think clear tonight.
+        //Calling the method that will get the "Current Days Worn", "Last Five Wear Times" and the
+        //"Average Wear Time" variables from the shared preferences and then put them into their
+        //respective text views.
+        getTheLensWearValuesFromSharedPrefs();
+
+
+
+
+
+    }
+
+    //This method will get the "Current Days Worn", "Last Five Wear Times" and the "Average Wear Time"
+    //variables from the shared preferences and then put them in their respective text views.
+    private void getTheLensWearValuesFromSharedPrefs(){
+        //Getting the Contact Lens Wear Tracker Preferences.
+        SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+        //Get the value of the mCurrentLensCountPref shared preference and update the value of the
+        //"Current Days Worn" text view.
+        mCurrentLensCountString = contactLensWearSharedPreferences.getString(mCurrentLensCountPref,
+                getString(R.string.main_lens_counter_placeholder));
+        mMainLensCounterTV.setText(mCurrentLensCountString);
+    }
+
+
 
 
 }
