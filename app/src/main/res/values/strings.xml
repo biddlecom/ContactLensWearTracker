@@ -12,6 +12,12 @@
     <string name="main_lens_counter_placeholder">0</string>
     <string name="main_error_calculating_last_five">There was an error calculating your Last Five
         Wear Times. Please try again.</string>
+    
+    <!-- Overflow Menu Main Activity -->
+    <string name="action_credits">Credits</string>
+    <string name="action_privacy_policy">Privacy Policy</string>
+    <string name="menu_options_default_case">Whoops! It Appears The App Made A Mistake.\n
+        Please Try Again.\n \#MaximumEffort!</string>
 
     <!-- Credits Activity -->
     <string name="credits_logo_image_content_description">Biddlecom Studios Logo</string>

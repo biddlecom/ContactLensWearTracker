@@ -2,8 +2,11 @@ package com.danielbiddlecom.contactlensweartracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -300,8 +303,6 @@ public class MainActivity extends AppCompatActivity {
         mMainLensCounterTV.setText(getString(R.string.main_lens_counter_placeholder));
     }
 
-    //TODO: DAN- there is something wrong with this code because it is showing ALL the toast messages
-    // back to back when we hit the reset button. THANKFULLY, everything else seems to be working just fine.
     //This method will calculate the Average Wear Time of the user based on the Last Five Wear Times.
     //Then it will convert that integer into a string and store it in the mAverageWearTimeString
     //member variable so that it can later be set on the Average Wear Time number TextView.
@@ -310,24 +311,18 @@ public class MainActivity extends AppCompatActivity {
         //Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
         //If they are all zeros then the slot likely hasn't been filled in with user generated data yet.
         //For example, if the user has only been using the app for a few weeks.
-        if(mLastFiveSlotOneInteger == 0 && mLastFiveSlotTwoInteger == 0 && mLastFiveSlotThreeInteger == 0
-        && mLastFiveSlotFourInteger ==0 && mLastFiveSlotFiveInteger == 0){
+        if (mLastFiveSlotOneInteger == 0 && mLastFiveSlotTwoInteger == 0 && mLastFiveSlotThreeInteger == 0
+                && mLastFiveSlotFourInteger == 0 && mLastFiveSlotFiveInteger == 0) {
             mAverageWearTimeNumberTV.setText(R.string.main_lens_counter_placeholder);
 
             //There is no need to commit the "Last Five Wear Times" and the "Average Wear Time" to
             //the shared preferences because they were added as zero ("0") into the shared
             //preferences when we initially set them up.  This was done in the isTheUserNew() method.
-        } else {
-            //Show a toast message letting the user know that something went wrong and to try again.
-            Toast.makeText(MainActivity.this,
-                    getString(R.string.main_error_calculating_last_five), Toast.LENGTH_LONG).show();
-        }
-
-        //Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
-        //If the first slot is not a zero and the last four are, then set the Average Wear Time to
-        //the value of slot one.
-        if(mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger == 0 && mLastFiveSlotThreeInteger == 0
-                && mLastFiveSlotFourInteger ==0 && mLastFiveSlotFiveInteger == 0){
+        } else if (mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger == 0 && mLastFiveSlotThreeInteger == 0
+                && mLastFiveSlotFourInteger == 0 && mLastFiveSlotFiveInteger == 0) {
+            //^^Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
+            //If the first slot is not a zero and the last four are, then set the Average Wear Time to
+            //the value of slot one.
 
             //Getting the string values of slots 1-2 so that we can save them into the
             //shared preferences later.
@@ -344,17 +339,11 @@ public class MainActivity extends AppCompatActivity {
             sharedPrefsSlotOneEditor.putString(mLastFiveSlotOnePref, mLastFiveSlotOneString);
             sharedPrefsSlotOneEditor.putString(mAverageWearTimePref, mLastFiveSlotOneString);
             sharedPrefsSlotOneEditor.apply();
-        } else {
-            //Show a toast message letting the user know that something went wrong and to try again.
-            Toast.makeText(MainActivity.this,
-                    getString(R.string.main_error_calculating_last_five), Toast.LENGTH_LONG).show();
-        }
-
-        //Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
-        //If the first and second slots are not zeros and the last three are, then add the first two
-        //together and divide by 2 to get the Average Wear Time number.
-        if(mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger == 0
-                && mLastFiveSlotFourInteger ==0 && mLastFiveSlotFiveInteger == 0){
+        } else if (mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger == 0
+                && mLastFiveSlotFourInteger == 0 && mLastFiveSlotFiveInteger == 0) {
+            //^^Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
+            //If the first and second slots are not zeros and the last three are, then add the first two
+            //together and divide by 2 to get the Average Wear Time number.
 
             //Getting the string values of slots 1-2 so that we can save them into the
             //shared preferences later.
@@ -385,17 +374,11 @@ public class MainActivity extends AppCompatActivity {
             sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotTwoPref, mLastFiveSlotTwoString);
             sharedPrefsSlotOneTwoEditor.putString(mAverageWearTimePref, mAverageWearTimeString);
             sharedPrefsSlotOneTwoEditor.apply();
-        } else {
-            //Show a toast message letting the user know that something went wrong and to try again.
-            Toast.makeText(MainActivity.this,
-                    getString(R.string.main_error_calculating_last_five), Toast.LENGTH_LONG).show();
-        }
-
-        //Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
-        //If the first, second and third slots are not zeros and the last two are, then add the
-        //first three together and divide by 3 to get the Average Wear Time number.
-        if(mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger != 0
-                && mLastFiveSlotFourInteger ==0 && mLastFiveSlotFiveInteger == 0){
+        } else if (mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger != 0
+                && mLastFiveSlotFourInteger == 0 && mLastFiveSlotFiveInteger == 0) {
+            //^^Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
+            //If the first, second and third slots are not zeros and the last two are, then add the
+            //first three together and divide by 3 to get the Average Wear Time number.
 
             //Getting the string values of slots 1-3 so that we can save them into
             //the shared preferences later.
@@ -429,17 +412,11 @@ public class MainActivity extends AppCompatActivity {
             sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotThreePref, mLastFiveSlotThreeString);
             sharedPrefsSlotOneTwoEditor.putString(mAverageWearTimePref, mAverageWearTimeString);
             sharedPrefsSlotOneTwoEditor.apply();
-        } else {
-            //Show a toast message letting the user know that something went wrong and to try again.
-            Toast.makeText(MainActivity.this,
-                    getString(R.string.main_error_calculating_last_five), Toast.LENGTH_LONG).show();
-        }
-
-        //Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
-        //If the first, second, third and fourth slots are not zeros and the last one is, then add
-        //the first four together and divide by 4 to get the Average Wear Time number.
-        if(mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger != 0
-                && mLastFiveSlotFourInteger !=0 && mLastFiveSlotFiveInteger == 0){
+        } else if (mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger != 0
+                && mLastFiveSlotFourInteger != 0 && mLastFiveSlotFiveInteger == 0) {
+            //^^Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
+            //If the first, second, third and fourth slots are not zeros and the last one is, then add
+            //the first four together and divide by 4 to get the Average Wear Time number.
 
             //Getting the string values of slots 1-4 so that we can save them into
             //the shared preferences later.
@@ -451,7 +428,7 @@ public class MainActivity extends AppCompatActivity {
             //Adding the first four "Last Five Wear Times" slots up and storing it in the
             //tempAverageWearTimeInteger.
             int tempAverageWearTimeInteger = mLastFiveSlotOneInteger + mLastFiveSlotTwoInteger
-                    + mLastFiveSlotThreeInteger +mLastFiveSlotFourInteger;
+                    + mLastFiveSlotThreeInteger + mLastFiveSlotFourInteger;
 
             //Dividing the newly created tempAverageWearTimeInteger by 4 to get the average time of
             //the Last Five Wear Times and then storing it in the mAverageWearTimeInteger.
@@ -475,17 +452,11 @@ public class MainActivity extends AppCompatActivity {
             sharedPrefsSlotOneTwoEditor.putString(mLastFiveSlotFourPref, mLastFiveSlotFourString);
             sharedPrefsSlotOneTwoEditor.putString(mAverageWearTimePref, mAverageWearTimeString);
             sharedPrefsSlotOneTwoEditor.apply();
-        } else {
-            //Show a toast message letting the user know that something went wrong and to try again.
-            Toast.makeText(MainActivity.this,
-                    getString(R.string.main_error_calculating_last_five), Toast.LENGTH_LONG).show();
-        }
-
-        //Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
-        //If the first, second, third, fourth and fifth slots are all not zeros, then add
-        //them all together and divide by 5 to get the Average Wear Time number.
-        if(mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger != 0
-                && mLastFiveSlotFourInteger !=0 && mLastFiveSlotFiveInteger != 0){
+        } else if (mLastFiveSlotOneInteger != 0 && mLastFiveSlotTwoInteger != 0 && mLastFiveSlotThreeInteger != 0
+                && mLastFiveSlotFourInteger != 0 && mLastFiveSlotFiveInteger != 0) {
+            //^^Checking to see if any of the Last Five Wear Time numbers are zeros ("0").
+            //If the first, second, third, fourth and fifth slots are all not zeros, then add
+            //them all together and divide by 5 to get the Average Wear Time number.
 
             //Getting the string values of slots 1-5 so that we can save them into
             //the shared preferences later.
@@ -534,7 +505,7 @@ public class MainActivity extends AppCompatActivity {
     //If the user is new then we will create all the shared prefs with a value of zero.
     //If the user is NOT new then we will get all the current lens wear values and then set them
     //onto their respective text views.
-    private void isTheUserNew(){
+    private void isTheUserNew() {
         //Getting the Contact Lens Wear Tracker Shared Preferences.
         SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
 
@@ -608,5 +579,35 @@ public class MainActivity extends AppCompatActivity {
                     getString(R.string.main_lens_counter_placeholder));
             mAverageWearTimeNumberTV.setText(mAverageWearTimeString);
         }
+    }
+
+    //Inflating the Main Activity Overflow Menu.
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflate the menu options from the res/menu/overflow_main_activity.xml file.
+        //This adds menu items to the app bar.
+        getMenuInflater().inflate(R.menu.overflow_main_activity, menu);
+        return true;
+    }
+
+    //Menu items for the Main Activity Overflow Menu.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //User clicked on a menu option in the app bar overflow menu.
+        switch (item.getItemId()) {
+            //Respond to a click on the "Credit" menu option.
+            case R.id.action_credits:
+                Intent intentToCreditsActivity = new Intent(MainActivity.this, Credits.class);
+                startActivity(intentToCreditsActivity);
+                return true;
+            case R.id.action_privacy_policy:
+                //TODO intent to Privacy Policy Activity
+                return true;
+            default:
+                //Show a toast letting the user know that there was an error processing their request.
+                Toast.makeText(MainActivity.this,
+                        getString(R.string.menu_options_default_case), Toast.LENGTH_LONG).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

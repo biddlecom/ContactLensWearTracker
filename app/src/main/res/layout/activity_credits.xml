@@ -46,6 +46,7 @@
             android:layout_marginBottom="@dimen/credits_contact_email_margin_bottom"
             android:gravity="center"
             android:text="@string/credits_contact_email_address"
+            android:textColor="@color/purple_500"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
