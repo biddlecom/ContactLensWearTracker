@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.danielbiddlecom.contactlensweartracker">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,12 +11,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ContactLensWearTracker">
         <activity
+            android:name=".PrivacyPolicy"
+            android:exported="false" />
+        <activity
             android:name=".Credits"
             android:exported="false"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />
+
                 <data android:scheme="mailto" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

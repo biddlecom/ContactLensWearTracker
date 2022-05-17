@@ -600,8 +600,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentToCreditsActivity = new Intent(MainActivity.this, Credits.class);
                 startActivity(intentToCreditsActivity);
                 return true;
+                //Respond to a click on the "Privacy Policy" menu option
             case R.id.action_privacy_policy:
-                //TODO intent to Privacy Policy Activity
+                Intent intentToPrivacyPolicyActivity = new Intent(MainActivity.this,
+                        PrivacyPolicy.class);
+                startActivity(intentToPrivacyPolicyActivity);
                 return true;
             default:
                 //Show a toast letting the user know that there was an error processing their request.

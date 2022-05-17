@@ -12,7 +12,7 @@
     <string name="main_lens_counter_placeholder">0</string>
     <string name="main_error_calculating_last_five">There was an error calculating your Last Five
         Wear Times. Please try again.</string>
-    
+
     <!-- Overflow Menu Main Activity -->
     <string name="action_credits">Credits</string>
     <string name="action_privacy_policy">Privacy Policy</string>
@@ -29,4 +29,7 @@
         \nPlease Install An Email App On This Device.</string>
     <string name="credits_credit_heading">Credits:</string>
     <string name="credits_credit_body">Google @Google:\nPlus ( + ) icon\nMinus ( - ) icon\n\nContact Lens Tracker logo:\nDaniel Biddlecom</string>
+
+    <!-- Privacy Policy -->
+    <string name="privacy_policy_url">https://www.yahoo.com</string>
 </resources>
