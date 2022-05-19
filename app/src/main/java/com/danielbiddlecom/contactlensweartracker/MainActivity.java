@@ -595,6 +595,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //User clicked on a menu option in the app bar overflow menu.
         switch (item.getItemId()) {
+            //Respond to a click on the "Prescription" menu option.
+            case R.id.action_prescription:
+                Intent intentToPrescriptionActivity = new Intent(MainActivity.this,
+                        Prescription.class);
+                startActivity(intentToPrescriptionActivity);
+                return true;
             //Respond to a click on the "Credit" menu option.
             case R.id.action_credits:
                 Intent intentToCreditsActivity = new Intent(MainActivity.this, Credits.class);

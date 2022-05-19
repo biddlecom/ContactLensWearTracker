@@ -14,6 +14,7 @@
         Wear Times. Please try again.</string>
 
     <!-- Overflow Menu Main Activity -->
+    <string name="action_prescription">Prescription</string>
     <string name="action_credits">Credits</string>
     <string name="action_privacy_policy">Privacy Policy</string>
     <string name="menu_options_default_case">Whoops! It Appears The App Made A Mistake.\n
@@ -31,5 +32,10 @@
     <string name="credits_credit_body">Google @Google:\nPlus ( + ) icon\nMinus ( - ) icon\n\nContact Lens Tracker logo:\nDaniel Biddlecom</string>
 
     <!-- Privacy Policy -->
-    <string name="privacy_policy_url">https://www.yahoo.com</string>
+    <string name="privacy_policy_url">https://www.stackoverflow.com</string>
+    <string name="no_internet_browser_installed">You Do Not Have An Internet Browser Installed\n
+        Please Install An Internet App To Complete This Action.</string>
+
+    <!-- Prescription -->
+    <string name="prescription_contacts_rx_title">Contact Prescription</string>
 </resources>

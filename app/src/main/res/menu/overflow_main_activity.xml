@@ -5,6 +5,11 @@
     tools:context=".MainActivity">
 
     <item
+        android:id="@+id/action_prescription"
+        android:title="@string/action_prescription"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_credits"
         android:title="@string/action_credits"
         app:showAsAction="never" />
