@@ -16,10 +16,6 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".PrivacyPolicy"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".Credits"
             android:exported="false"
             android:parentActivityName=".MainActivity">

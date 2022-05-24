@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -608,9 +609,21 @@ public class MainActivity extends AppCompatActivity {
                 return true;
                 //Respond to a click on the "Privacy Policy" menu option
             case R.id.action_privacy_policy:
-                Intent intentToPrivacyPolicyActivity = new Intent(MainActivity.this,
-                        PrivacyPolicy.class);
-                startActivity(intentToPrivacyPolicyActivity);
+                //Getting the url.
+                Uri webpage = Uri.parse(getString(R.string.privacy_policy_url));
+                //This Intent will take the url and send an intent to open an internet browser.
+                Intent internetIntent = new Intent(Intent.ACTION_VIEW, webpage);
+                //Only internet browsing apps should handle this.
+                //Checking to see if there is an internet browsing app on the device and that it is not null.
+                if (internetIntent.resolveActivity(getPackageManager()) != null) {
+                    //If there is an internet browser app installed and it is not null, start the intent.
+                    startActivity(internetIntent);
+                } else {
+                    //If there are no internet browsing apps on the device, display a toast letting the
+                    //user know they need to install an internet browsing app to complete the action.
+                    Toast.makeText(MainActivity.this,
+                            getString(R.string.no_internet_browser_installed), Toast.LENGTH_LONG).show();
+                }
                 return true;
             default:
                 //Show a toast letting the user know that there was an error processing their request.

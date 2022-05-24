@@ -38,4 +38,10 @@
 
     <!-- Prescription -->
     <string name="prescription_contacts_rx_title">Contact Prescription</string>
+    <string name="prescription_left_eye_title">Left Eye (OS)</string>
+    <string name="prescription_sphere_title">Sphere</string>
+    <string name="prescription_cylinder_title">Cylinder</string>
+    <string name="prescription_axis_title">Axis</string>
+    <string name="prescription_prism_title">Prism</string>
+    <string name="prescription_base_title">Base</string>
 </resources>
