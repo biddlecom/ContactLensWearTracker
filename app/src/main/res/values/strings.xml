@@ -37,8 +37,10 @@
         Please Install An Internet App To Complete This Action.</string>
 
     <!-- Prescription -->
-    <string name="prescription_contacts_rx_title">Contact Prescription</string>
+    <string name="prescription_contacts_rx_title">Contacts Prescription</string>
+    <string name="prescription_glasses_rx_title">Glasses Prescription</string>
     <string name="prescription_left_eye_title">Left Eye (OS)</string>
+    <string name="prescription_right_eye_title">Right Eye (OD)</string>
     <string name="prescription_sphere_title">Sphere</string>
     <string name="prescription_cylinder_title">Cylinder</string>
     <string name="prescription_axis_title">Axis</string>
