@@ -1,17 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/prescription_contact_rx"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="77dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="340dp" />
+
+    <TextView
+        android:id="@+id/prescription_contacts_rx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="@dimen/prescription_contacts_title_padding_bottom"
         android:text="@string/prescription_contacts_rx_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/prescription_contacts_left_eye_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/prescription_contacts_left_right_eyes_padding_bottom"
+        android:text="@string/prescription_left_eye_title"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_rx" />
+
+
+    <TextView
+        android:id="@+id/prescription_contacts_right_eye_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/prescription_contacts_left_right_eyes_padding_bottom"
+        android:text="@string/prescription_right_eye_title"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_rx" />
+
+    <TextView
+        android:id="@+id/prescription_contacts_power_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prescription_power_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/prescription_contacts_left_power_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/prescription_contacts_left_power_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_contacts_left_power_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_power_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_left_eye_title" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_contacts_right_power_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_power_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_right_eye_title" />
+
+    <TextView
+        android:id="@+id/prescription_contacts_bc_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prescription_bc_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/prescription_contacts_left_bc_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/prescription_contacts_left_bc_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_contacts_left_bc_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_bc_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_left_power_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_contacts_right_bc_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_bc_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_right_power_edit_text" />
+
+    <TextView
+        android:id="@+id/prescription_contacts_dia_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prescription_dia_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/prescription_contacts_left_dia_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/prescription_contacts_left_dia_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_contacts_left_dia_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_dia_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_left_bc_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_contacts_right_dia_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_dia_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_right_bc_edit_text" />
+
+    <TextView
+        android:id="@+id/prescription_contacts_brand_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prescription_brand_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/prescription_contacts_left_brand_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/prescription_contacts_left_brand_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_contacts_left_brand_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_brand_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_left_dia_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_contacts_right_brand_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_brand_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_right_dia_edit_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

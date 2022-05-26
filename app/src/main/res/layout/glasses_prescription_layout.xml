@@ -1,89 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="77dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="104dp" />
-
-    <TextView
-        android:id="@+id/prescription_left_eye_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prescription_left_eye_title"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_rx" />
-
-
-    <TextView
-        android:id="@+id/prescription_right_eye_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prescription_right_eye_title"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_rx" />
-
-    <TextView
-        android:id="@+id/prescription_glasses_rx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/prescription_glasses_rx_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/prescription_glasses_sphere_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prescription_sphere_title"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/prescription_left_eye_title" />
-
-    <TextView
-        android:id="@+id/prescription_glasses_cylinder_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prescription_cylinder_title"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_sphere_title" />
-
-    <TextView
-        android:id="@+id/prescription_glasses_axis_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prescription_axis_title"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_cylinder_title" />
-
-    <TextView
-        android:id="@+id/prescription_glasses_prism_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prescription_prism_title"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_axis_title" />
-
-    <TextView
-        android:id="@+id/prescription_glasses_base_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prescription_base_title"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_prism_title" />
+        app:layout_constraintGuide_begin="205dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="205dp" />
+        app:layout_constraintGuide_begin="340dp" />
+
+    <TextView
+        android:id="@+id/prescription_glasses_rx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="@dimen/prescription_glasses_title_padding_bottom"
+        android:text="@string/prescription_glasses_rx_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/prescription_glasses_left_eye_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/prescription_glasses_left_right_eyes_padding_bottom"
+        android:text="@string/prescription_left_eye_title"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_rx" />
+
+
+    <TextView
+        android:id="@+id/prescription_glasses_right_eye_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/prescription_glasses_left_right_eyes_padding_bottom"
+        android:text="@string/prescription_right_eye_title"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_rx" />
+
+    <TextView
+        android:id="@+id/prescription_glasses_sphere_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prescription_sphere_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/prescription_glasses_left_sphere_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@+id/prescription_glasses_left_sphere_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_glasses_left_sphere_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_sphere_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_left_eye_title" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_glasses_right_sphere_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_sphere_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_right_eye_title" />
+
+    <TextView
+        android:id="@+id/prescription_glasses_cylinder_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prescription_cylinder_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/prescription_glasses_left_cylinder_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@+id/prescription_glasses_left_cylinder_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_glasses_left_cylinder_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_cylinder_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_left_sphere_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_glasses_right_cylinder_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_cylinder_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_right_sphere_edit_text" />
+
+    <TextView
+        android:id="@+id/prescription_glasses_axis_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prescription_axis_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/prescription_glasses_left_axis_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@+id/prescription_glasses_left_axis_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_glasses_left_axis_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_axis_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_left_cylinder_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_glasses_right_axis_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_axis_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_right_cylinder_edit_text" />
+
+    <TextView
+        android:id="@+id/prescription_glasses_prism_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prescription_prism_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/prescription_glasses_left_prism_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@+id/prescription_glasses_left_prism_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_glasses_left_prism_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_prism_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_left_axis_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_glasses_right_prism_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_prism_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_right_axis_edit_text" />
+
+    <TextView
+        android:id="@+id/prescription_glasses_base_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prescription_base_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/prescription_glasses_left_base_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@+id/prescription_glasses_left_base_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_glasses_left_base_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_base_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_left_prism_edit_text" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/prescription_glasses_right_base_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/prescription_base_hint"
+        android:textColorHint="@color/gray_50_400"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_right_prism_edit_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

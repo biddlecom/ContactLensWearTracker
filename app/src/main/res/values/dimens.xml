@@ -29,4 +29,15 @@
     <dimen name="credits_credit_heading_margin_bottom">4dp</dimen>
     <dimen name="credits_credit_body_padding_bottom">16dp</dimen>
 
+    <!-- glasses_prescription_layout.xml -->
+    <dimen name="prescription_glasses_title_padding_bottom">12dp</dimen>
+    <dimen name="prescription_glasses_left_right_eyes_padding_bottom">12dp</dimen>
+    <dimen name="prescription_contacts_title_padding_bottom">12dp</dimen>
+    <dimen name="prescription_contacts_left_right_eyes_padding_bottom">12dp</dimen>
+    <dimen name="prescription_activity_linear_layout_margin_top">8dp</dimen>
+    <dimen name="prescription_activity_contacts_bottom_margin">12dp</dimen>
+    <dimen name="prescription_activity_divider_bar_bottom_margin">12dp</dimen>
+    <dimen name="prescription_activity_glasses_bottom_margin">12dp</dimen>
+
+
 </resources>
