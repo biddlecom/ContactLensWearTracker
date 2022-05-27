@@ -59,4 +59,6 @@
     <string name="prescription_dia_hint">14.0</string>
     <string name="prescription_brand_title">Brand:</string>
     <string name="prescription_brand_hint">Acuvue</string>
+    <string name="prescription_save_contact_button">Save Contact RX</string>
+    <string name="prescription_save_glasses_button">Save Glasses RX</string>
 </resources>

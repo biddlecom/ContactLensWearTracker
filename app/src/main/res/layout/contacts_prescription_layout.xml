@@ -190,4 +190,14 @@
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_right_dia_edit_text" />
 
+    <Button
+        android:id="@+id/prescription_save_contacts_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/prescription_save_contact_button"
+        android:layout_marginTop="@dimen/prescription_contacts_save_button_margin_top"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_contacts_left_brand_edit_text" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

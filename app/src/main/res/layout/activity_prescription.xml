@@ -9,7 +9,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/prescription_activity_linear_layout_margin_top"
+        android:paddingTop="@dimen/prescription_activity_linear_layout_padding_top"
+        android:paddingStart="@dimen/prescription_activity_linear_layout_padding_left_right"
+        android:paddingEnd="@dimen/prescription_activity_linear_layout_padding_left_right"
+        android:paddingBottom="@dimen/prescription_activity_linear_layout_padding_bottom"
         android:orientation="vertical">
 
         <include
@@ -29,8 +32,7 @@
             android:id="@+id/prescription_glasses_layout"
             layout="@layout/glasses_prescription_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/prescription_activity_glasses_bottom_margin" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
