@@ -61,4 +61,5 @@
     <string name="prescription_brand_hint">Acuvue</string>
     <string name="prescription_save_contact_button">Save Contact RX</string>
     <string name="prescription_save_glasses_button">Save Glasses RX</string>
+    <string name="prescription_empty_text_view_dash">-</string>
 </resources>
