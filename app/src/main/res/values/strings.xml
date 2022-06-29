@@ -62,4 +62,8 @@
     <string name="prescription_save_contact_button">Save Contact RX</string>
     <string name="prescription_save_glasses_button">Save Glasses RX</string>
     <string name="prescription_empty_text_view_dash">-</string>
+    <string name="prescription_contact_lens_rx_saved">You Have Successfully Saved Your Contact
+        Prescription!</string>
+    <string name="prescription_glasses_rx_saved">You Have Successfully Saved Your Glasses
+        Prescription!</string>
 </resources>

@@ -36,10 +36,10 @@
             android:id="@+id/main_minus_button"
             android:layout_width="@dimen/main_lens_counter_buttons_width_height"
             android:layout_height="@dimen/main_lens_counter_buttons_width_height"
+            android:layout_marginEnd="@dimen/main_minus_button_margin_end"
             android:backgroundTint="@color/white"
             android:contentDescription="@string/main_minus_button_description"
             android:src="@drawable/minus_circle_outline_black_48dp"
-            android:layout_marginEnd="@dimen/main_minus_button_margin_end"
             app:layout_constraintBottom_toBottomOf="@+id/main_lens_counter_tv"
             app:layout_constraintEnd_toStartOf="@+id/main_lens_counter_tv"
             app:layout_constraintTop_toTopOf="@id/main_lens_counter_tv" />
@@ -48,10 +48,10 @@
             android:id="@+id/main_plus_button"
             android:layout_width="@dimen/main_lens_counter_buttons_width_height"
             android:layout_height="@dimen/main_lens_counter_buttons_width_height"
+            android:layout_marginStart="@dimen/main_plus_button_margin_start"
             android:backgroundTint="@color/white"
             android:contentDescription="@string/main_plus_button_description"
             android:src="@drawable/plus_circle_outline_black_48dp"
-            android:layout_marginStart="@dimen/main_plus_button_margin_start"
             app:layout_constraintBottom_toBottomOf="@+id/main_lens_counter_tv"
             app:layout_constraintStart_toEndOf="@+id/main_lens_counter_tv"
             app:layout_constraintTop_toTopOf="@id/main_lens_counter_tv" />
@@ -60,10 +60,10 @@
             android:id="@+id/main_reset_button"
             android:layout_width="@dimen/main_lens_counter_buttons_width_height"
             android:layout_height="@dimen/main_lens_counter_buttons_width_height"
+            android:layout_marginTop="@dimen/main_reset_button_margin_top"
             android:backgroundTint="@color/white"
             android:contentDescription="@string/main_reset_button_description"
             android:src="@drawable/reset_black_48dp"
-            android:layout_marginTop="@dimen/main_reset_button_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_lens_counter_tv" />
@@ -72,9 +72,9 @@
             android:id="@+id/main_last_five_wear_times_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/main_last_five_wear_times_tv_margin_top"
             android:text="@string/main_last_five_wear"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:layout_marginTop="@dimen/main_last_five_wear_times_tv_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_reset_button" />
@@ -83,10 +83,10 @@
             android:id="@+id/main_last_five_newest_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_last_five_newest_tv_margin_start"
+            android:layout_marginTop="@dimen/main_last_five_newest_tv_margin_top"
             android:text="@string/main_last_five_newest"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_marginTop="@dimen/main_last_five_newest_tv_margin_top"
-            android:layout_marginStart="@dimen/main_last_five_newest_tv_margin_start"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_last_five_wear_times_tv" />
 
@@ -94,9 +94,9 @@
             android:id="@+id/main_last_five_oldest_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/main_last_five_oldest_tv_margin_end"
             android:text="@string/main_last_five_oldest"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_marginEnd="@dimen/main_last_five_oldest_tv_margin_end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/main_last_five_newest_tv" />
 
@@ -104,8 +104,8 @@
             android:id="@+id/main_linear_layout_last_five"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="@dimen/linear_layout_margin_top"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_last_five_newest_tv">
@@ -160,9 +160,9 @@
             android:id="@+id/average_wear_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/average_wear_time_tv_margin_top"
             android:text="@string/main_average_wear"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_marginTop="@dimen/average_wear_time_tv_margin_top"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_linear_layout_last_five" />
 
@@ -170,9 +170,9 @@
             android:id="@+id/average_wear_time_number_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/average_wear_time_number_tv_margin_start"
             android:text="@string/main_lens_counter_placeholder"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_marginStart="@dimen/average_wear_time_number_tv_margin_start"
             app:layout_constraintBottom_toBottomOf="@+id/average_wear_time_tv"
             app:layout_constraintStart_toEndOf="@+id/average_wear_time_tv"
             app:layout_constraintTop_toTopOf="@+id/average_wear_time_tv" />

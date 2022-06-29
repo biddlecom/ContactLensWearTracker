@@ -46,8 +46,8 @@
             android:layout_marginBottom="@dimen/credits_contact_email_margin_bottom"
             android:gravity="center"
             android:text="@string/credits_contact_email_address"
-            android:textColor="@color/purple_500"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/purple_500" />
 
         <TextView
             android:id="@+id/credits_credit_heading_text_view"
@@ -62,10 +62,10 @@
             android:id="@+id/credits_credit_body_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/credits_credit_body_padding_bottom"
             android:gravity="center"
+            android:paddingBottom="@dimen/credits_credit_body_padding_bottom"
             android:text="@string/credits_credit_body"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
     </LinearLayout>

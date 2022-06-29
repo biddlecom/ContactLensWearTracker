@@ -607,7 +607,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentToCreditsActivity = new Intent(MainActivity.this, Credits.class);
                 startActivity(intentToCreditsActivity);
                 return true;
-                //Respond to a click on the "Privacy Policy" menu option
+            //Respond to a click on the "Privacy Policy" menu option
             case R.id.action_privacy_policy:
                 //Getting the url.
                 Uri webpage = Uri.parse(getString(R.string.privacy_policy_url));

@@ -3,12 +3,11 @@ package com.danielbiddlecom.contactlensweartracker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -42,8 +41,6 @@ public class Prescription extends AppCompatActivity {
 
     //Shared Prefs Member Variables.
     String mIsUserNewPrescriptionActivityPref = "mIsUserNewPrescriptionActivityPref";
-    String mIsUserNewContactPrescriptionPref = "mIsUserNewContactPrescriptionPref";
-    String mIsUserNewGlassesPrescriptionPref = "mIsUserNewGlassesPrescriptionPref";
     String mContactLeftPowerPref = "contactLeftPowerPref";
     String mContactRightPowerPref = "contactRightPowerPref";
     String mContactsLeftBCPref = "contactLeftBCPref";
@@ -65,8 +62,6 @@ public class Prescription extends AppCompatActivity {
 
     //Boolean that will hold whether the user is new or not
     boolean mIsUserNewPrescriptionActivityBool = false;
-    boolean mIsUserNewContactPrescriptionBool = false;
-    boolean mIsUserNewGlassesPrescriptionBool = false;
 
     //Member variables for the strings that will hold the users information from the contacts and
     //glasses prescriptions edit texts.
@@ -138,8 +133,7 @@ public class Prescription extends AppCompatActivity {
         isUserNewPrescriptionActivity();
 
     }  //End Of OnCreate
-
-    //TODO: still not working. Won't save the prefs and won't recall them.  It will still only recall the generic info.
+    
     //This method will check to see if the user is new or not.
     //If they are new, then put the new preference and boolean in the shared prefs.
     //If they are not new then get the info from the shared preferences and set the text on the text views.
@@ -161,7 +155,7 @@ public class Prescription extends AppCompatActivity {
             //The user is not new so we need to get the contact and/or glasses prescription information
             //from the shared prefs and set it into the appropriate text views so the user can view
             //their information.
-            SharedPreferences sharedPrefsPrescriptionActivity = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences sharedPrefsPrescriptionActivity = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
 
             //Contacts Prescription from shared prefs.
             mContactLeftPowerString = sharedPrefsPrescriptionActivity.getString(mContactLeftPowerPref,
@@ -231,14 +225,6 @@ public class Prescription extends AppCompatActivity {
     //shared preferences.  If the user leaves a field blank then we will save a "dash" into the
     //shared preferences.
     private void saveContactsPrescription() {
-        //TODO: since we only have to worry about what happens when they hit the save button,
-        // get the data from the edit texts and save it in the shared preferences and then set the
-        // data in the edit texts.
-        // Check it, save it, set it.
-        // Check to see if it is blank or not, if it is blank then save a dash or something. (or the "Ex. =3.00" or something like that).
-        // If it is not blank then save the data into the shared prefs.
-        // Then set it in the edit texts for immediate viewing.
-
         //Checking to see if the contacts prescription edit texts are blank.
         if (Objects.requireNonNull(mPrescriptionContactsLeftPowerET.getText()).toString().isEmpty()) {
             mContactLeftPowerString = getString(R.string.prescription_empty_text_view_dash);
@@ -304,125 +290,99 @@ public class Prescription extends AppCompatActivity {
         sharedPrefsContactPrescriptionEditor.putString(mContactsRightBrandPref, mContactsRightBrandString);
         sharedPrefsContactPrescriptionEditor.apply();
 
-//        //Update the "Contact Prescription" text views with the user info.
-//        mPrescriptionContactsLeftPowerET.setText(mContactLeftPowerString);
-//        mPrescriptionContactsRightPowerET.setText(R.string.prescription_power_hint);
-//        mPrescriptionContactsLeftBCET.setText(R.string.prescription_bc_hint);
-//        mPrescriptionContactsRightBCET.setText(R.string.prescription_bc_hint);
-//        mPrescriptionContactsLeftDiaET.setText(R.string.prescription_dia_hint);
-//        mPrescriptionContactsRightDiaET.setText(R.string.prescription_dia_hint);
-//        mPrescriptionContactsLeftBrandET.setText(R.string.prescription_brand_hint);
-//        mPrescriptionContactsRightBrandET.setText(R.string.prescription_brand_hint);
-
-
-
+        //Show a toast letting the user know that their contact prescription has been successfully saved.
+        Toast.makeText(Prescription.this, getString(R.string.prescription_contact_lens_rx_saved),
+                Toast.LENGTH_LONG).show();
     }
 
 
     //This method will get the information from the edit texts and then save it in the shared
     //preferences.  The user doesn't have to fill in all the empty spaces in order to save their
     //information.  It will get whatever information the user does input and save that into the
+    //shared preferences.  If the user leaves a field blank then we will save a "dash" into the
     //shared preferences.
     private void saveGlassesPrescription() {
-        //TODO: since we only have to worry about what happens when they hit the save button,
-        // get the data from the edit texts and save it in the shared preferences and then set the
-        // data in the edit texts.
-        // Check it, save it, set it.
-        // Check to see if it is blank or not, if it is blank then save a dash or something. (or the "Ex. =3.00" or something like that).
-        // If it is not blank then save the data into the shared prefs.
-        // Then set it in the edit texts for immediate viewing. 
+        //Checking to see if the glasses prescription edit texts are blank.
+        if (Objects.requireNonNull(mPrescriptionGlassesLeftSphereET.getText()).toString().isEmpty()) {
+            mGlassesLeftSphereString = getString(R.string.prescription_empty_text_view_dash);
+        } else {
+            mGlassesLeftSphereString = mPrescriptionGlassesLeftSphereET.getText().toString();
+        }
+
+        if (Objects.requireNonNull(mPrescriptionGlassesRightSphereET.getText()).toString().isEmpty()) {
+            mGlassesRightSphereString = getString(R.string.prescription_empty_text_view_dash);
+        } else {
+            mGlassesRightSphereString = mPrescriptionGlassesRightSphereET.getText().toString();
+        }
+
+        if (Objects.requireNonNull(mPrescriptionGlassesLeftCylinderET.getText()).toString().isEmpty()) {
+            mGlassesLeftCylinderString = getString(R.string.prescription_empty_text_view_dash);
+        } else {
+            mGlassesLeftCylinderString = mPrescriptionGlassesLeftCylinderET.getText().toString();
+        }
+
+        if (Objects.requireNonNull(mPrescriptionGlassesRightCylinderET.getText()).toString().isEmpty()) {
+            mGlassesRightCylinderString = getString(R.string.prescription_empty_text_view_dash);
+        } else {
+            mGlassesRightCylinderString = mPrescriptionGlassesRightCylinderET.getText().toString();
+        }
+
+        if (Objects.requireNonNull(mPrescriptionGlassesLeftAxisET.getText()).toString().isEmpty()) {
+            mGlassesLeftAxisString = getString(R.string.prescription_empty_text_view_dash);
+        } else {
+            mGlassesLeftAxisString = mPrescriptionGlassesLeftAxisET.getText().toString();
+        }
+
+        if (Objects.requireNonNull(mPrescriptionGlassesRightAxisET.getText()).toString().isEmpty()) {
+            mGlassesRightAxisString = getString(R.string.prescription_empty_text_view_dash);
+        } else {
+            mGlassesRightAxisString = mPrescriptionGlassesRightAxisET.getText().toString();
+        }
+
+        if (Objects.requireNonNull(mPrescriptionGlassesLeftPrismET.getText()).toString().isEmpty()) {
+            mGlassesLeftPrismString = getString(R.string.prescription_empty_text_view_dash);
+        } else {
+            mGlassesLeftPrismString = mPrescriptionGlassesLeftPrismET.getText().toString();
+        }
+
+        if (Objects.requireNonNull(mPrescriptionGlassesRightPrismET.getText()).toString().isEmpty()) {
+            mGlassesRightPrismString = getString(R.string.prescription_empty_text_view_dash);
+        } else {
+            mGlassesRightPrismString = mPrescriptionGlassesRightPrismET.getText().toString();
+        }
+
+        if (Objects.requireNonNull(mPrescriptionGlassesLeftBaseET.getText()).toString().isEmpty()) {
+            mGlassesLeftBaseString = getString(R.string.prescription_empty_text_view_dash);
+        } else {
+            mGlassesLeftBaseString = mPrescriptionGlassesLeftBaseET.getText().toString();
+        }
+
+        if (Objects.requireNonNull(mPrescriptionGlassesRightBaseET.getText()).toString().isEmpty()) {
+            mGlassesRightBaseString = getString(R.string.prescription_empty_text_view_dash);
+        } else {
+            mGlassesRightBaseString = mPrescriptionGlassesRightBaseET.getText().toString();
+        }
+
         //Getting the Contact Lens Wear Tracker Shared Preferences.
         SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
 
-        //Perform a check to see if the CONTACT_LENS_WEAR_TRACKER_PREFS contains the key "mIsUserNewGlassesPrescriptionPref".
-        if (!contactLensWearSharedPreferences.contains(mIsUserNewGlassesPrescriptionPref)) {
-            //There is no mIsUserNewGlassesPrescriptionPref shared preference. The user is opening
-            //the app for the very first time.  We will create all the shared preferences and give
-            //them all a generic value. We will also then set the isUserNewGlassesPrescriptionBool
-            //to false since the user is no longer new to the app.
-            //Save the values into the Shared Preferences.
-            SharedPreferences.Editor sharedPrefsContactPrescriptionEditor = contactLensWearSharedPreferences.edit();
-            sharedPrefsContactPrescriptionEditor.putBoolean(mIsUserNewGlassesPrescriptionPref,
-                    mIsUserNewGlassesPrescriptionBool);
-            sharedPrefsContactPrescriptionEditor.putString(mGlassesLeftSpherePref,
-                    getString(R.string.prescription_sphere_hint));
-            sharedPrefsContactPrescriptionEditor.putString(mGlassesRightSpherePref,
-                    getString(R.string.prescription_sphere_hint));
-            sharedPrefsContactPrescriptionEditor.putString(mGlassesLeftCylinderPref,
-                    getString(R.string.prescription_cylinder_hint));
-            sharedPrefsContactPrescriptionEditor.putString(mGlassesRightCylinderPref,
-                    getString(R.string.prescription_cylinder_hint));
-            sharedPrefsContactPrescriptionEditor.putString(mGlassesLeftAxisPref,
-                    getString(R.string.prescription_axis_hint));
-            sharedPrefsContactPrescriptionEditor.putString(mGlassesRightAxisPref,
-                    getString(R.string.prescription_axis_hint));
-            sharedPrefsContactPrescriptionEditor.putString(mGlassesLeftPrismPref,
-                    getString(R.string.prescription_prism_hint));
-            sharedPrefsContactPrescriptionEditor.putString(mGlassesRightPrismPref,
-                    getString(R.string.prescription_prism_hint));
-            sharedPrefsContactPrescriptionEditor.putString(mGlassesLeftBasePref,
-                    getString(R.string.prescription_base_hint));
-            sharedPrefsContactPrescriptionEditor.putString(mGlassesRightBasePref,
-                    getString(R.string.prescription_base_hint));
-            sharedPrefsContactPrescriptionEditor.apply();
+        //Save the values into the Shared Preferences.
+        SharedPreferences.Editor sharedPrefsContactPrescriptionEditor = contactLensWearSharedPreferences.edit();
 
-            //Update the "Glasses Prescription" text views with the generic values listed above.
-            mPrescriptionGlassesLeftSphereET.setText(R.string.prescription_sphere_hint);
-            mPrescriptionGlassesRightSphereET.setText(R.string.prescription_sphere_hint);
-            mPrescriptionGlassesLeftCylinderET.setText(R.string.prescription_cylinder_hint);
-            mPrescriptionGlassesRightCylinderET.setText(R.string.prescription_cylinder_hint);
-            mPrescriptionGlassesLeftAxisET.setText(R.string.prescription_axis_hint);
-            mPrescriptionGlassesRightAxisET.setText(R.string.prescription_axis_hint);
-            mPrescriptionGlassesLeftPrismET.setText(R.string.prescription_prism_hint);
-            mPrescriptionGlassesRightPrismET.setText(R.string.prescription_prism_hint);
-            mPrescriptionGlassesLeftBaseET.setText(R.string.prescription_base_hint);
-            mPrescriptionGlassesRightBaseET.setText(R.string.prescription_base_hint);
+        sharedPrefsContactPrescriptionEditor.putString(mGlassesLeftSpherePref, mGlassesLeftSphereString);
+        sharedPrefsContactPrescriptionEditor.putString(mGlassesRightSpherePref, mGlassesRightSphereString);
+        sharedPrefsContactPrescriptionEditor.putString(mGlassesLeftCylinderPref, mGlassesLeftCylinderString);
+        sharedPrefsContactPrescriptionEditor.putString(mGlassesRightCylinderPref, mGlassesRightCylinderString);
+        sharedPrefsContactPrescriptionEditor.putString(mGlassesLeftAxisPref, mGlassesLeftAxisString);
+        sharedPrefsContactPrescriptionEditor.putString(mGlassesRightAxisPref, mGlassesRightAxisString);
+        sharedPrefsContactPrescriptionEditor.putString(mGlassesLeftPrismPref, mGlassesLeftPrismString);
+        sharedPrefsContactPrescriptionEditor.putString(mGlassesRightPrismPref, mGlassesRightPrismString);
+        sharedPrefsContactPrescriptionEditor.putString(mGlassesLeftBasePref, mGlassesLeftBaseString);
+        sharedPrefsContactPrescriptionEditor.putString(mGlassesRightBasePref, mGlassesRightBaseString);
+        sharedPrefsContactPrescriptionEditor.apply();
 
-        } else {
-            //The user is NOT new so we will get all the values from the shared preferences and put
-            //them into their respective text views.
-
-            //Get the values of the "Glasses Prescription" shared preference and update the values
-            //of the respective edit text views.
-            mGlassesLeftSphereString = contactLensWearSharedPreferences.getString(mGlassesLeftSpherePref,
-                    getString(R.string.prescription_sphere_hint));
-            mPrescriptionGlassesLeftSphereET.setText(mGlassesLeftSphereString);
-
-            mGlassesRightSphereString = contactLensWearSharedPreferences.getString(mGlassesRightSpherePref,
-                    getString(R.string.prescription_sphere_hint));
-            mPrescriptionGlassesRightSphereET.setText(mGlassesRightSphereString);
-
-            mGlassesLeftCylinderString = contactLensWearSharedPreferences.getString(mGlassesLeftCylinderPref,
-                    getString(R.string.prescription_cylinder_hint));
-            mPrescriptionGlassesLeftCylinderET.setText(mGlassesLeftCylinderString);
-
-            mGlassesRightCylinderString = contactLensWearSharedPreferences.getString(mGlassesRightCylinderPref,
-                    getString(R.string.prescription_cylinder_hint));
-            mPrescriptionGlassesRightCylinderET.setText(mGlassesRightCylinderString);
-
-            mGlassesLeftAxisString = contactLensWearSharedPreferences.getString(mGlassesLeftAxisPref,
-                    getString(R.string.prescription_axis_hint));
-            mPrescriptionGlassesLeftAxisET.setText(mGlassesLeftAxisString);
-
-            mGlassesRightAxisString = contactLensWearSharedPreferences.getString(mGlassesRightAxisPref,
-                    getString(R.string.prescription_axis_hint));
-            mPrescriptionGlassesRightAxisET.setText(mGlassesRightAxisString);
-
-            mGlassesLeftPrismString = contactLensWearSharedPreferences.getString(mGlassesLeftPrismPref,
-                    getString(R.string.prescription_prism_hint));
-            mPrescriptionGlassesLeftPrismET.setText(mGlassesLeftPrismString);
-
-            mGlassesRightPrismString = contactLensWearSharedPreferences.getString(mGlassesRightPrismPref,
-                    getString(R.string.prescription_prism_hint));
-            mPrescriptionGlassesRightPrismET.setText(mGlassesRightPrismString);
-
-            mGlassesLeftBaseString = contactLensWearSharedPreferences.getString(mGlassesLeftBasePref,
-                    getString(R.string.prescription_base_hint));
-            mPrescriptionGlassesLeftBaseET.setText(mGlassesLeftBaseString);
-
-            mGlassesRightBaseString = contactLensWearSharedPreferences.getString(mGlassesRightBasePref,
-                    getString(R.string.prescription_base_hint));
-            mPrescriptionGlassesRightBaseET.setText(mGlassesRightBaseString);
-        }
+        //Show a toast letting the user know that their contact prescription has been successfully saved.
+        Toast.makeText(Prescription.this, getString(R.string.prescription_glasses_rx_saved),
+                Toast.LENGTH_LONG).show();
     }
 }

@@ -30,11 +30,6 @@ public class Credits extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     } //End of onCreate
 
     //This method will populate a list of email apps on the device.  The user can then choose which
@@ -56,7 +51,4 @@ public class Credits extends AppCompatActivity {
                     getString(R.string.credits_no_email_app_on_device), Toast.LENGTH_LONG).show();
         }
     }
-
-
-
 }
