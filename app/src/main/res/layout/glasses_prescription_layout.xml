@@ -227,10 +227,12 @@
         android:id="@+id/prescription_save_glasses_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/prescription_save_buttons_margin_start_end"
         android:layout_marginTop="@dimen/prescription_glasses_save_button_margin_top"
+        android:layout_marginEnd="@dimen/prescription_save_buttons_margin_start_end"
         android:text="@string/prescription_save_glasses_button"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prescription_glasses_left_base_edit_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

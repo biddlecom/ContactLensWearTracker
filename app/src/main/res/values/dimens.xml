@@ -14,6 +14,7 @@
     <dimen name="main_last_five_oldest_tv_margin_end">12dp</dimen>
     <dimen name="linear_layout_margin_top">8dp</dimen>
     <dimen name="average_wear_time_tv_margin_top">24dp</dimen>
+    <dimen name="average_wear_time_tv_margin_start">12dp</dimen>
     <dimen name="average_wear_time_number_tv_margin_start">8dp</dimen>
     <dimen name="main_minus_button_margin_end">12dp</dimen>
     <dimen name="main_plus_button_margin_start">12dp</dimen>
@@ -41,6 +42,7 @@
     <dimen name="prescription_activity_divider_bar_bottom_margin">12dp</dimen>
     <dimen name="prescription_contacts_save_button_margin_top">12dp</dimen>
     <dimen name="prescription_glasses_save_button_margin_top">12dp</dimen>
+    <dimen name="prescription_save_buttons_margin_start_end">32dp</dimen>
 
 
 </resources>

@@ -609,6 +609,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             //Respond to a click on the "Privacy Policy" menu option
             case R.id.action_privacy_policy:
+                //TODO: the internet is not working on my phone.  But it works on the emulator.
                 //Getting the url.
                 Uri webpage = Uri.parse(getString(R.string.privacy_policy_url));
                 //This Intent will take the url and send an intent to open an internet browser.
