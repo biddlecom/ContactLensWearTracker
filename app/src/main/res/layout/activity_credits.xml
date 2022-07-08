@@ -19,7 +19,7 @@
             android:layout_marginTop="@dimen/credits_logo_image_margin_top"
             android:layout_marginBottom="@dimen/credits_logo_image_margin_bottom"
             android:contentDescription="@string/credits_logo_image_content_description"
-            android:src="@drawable/reset_black_48dp" />
+            android:src="@drawable/contact_lens_tracker_icon_512" />
 
         <TextView
             android:id="@+id/credits_app_info_text_view"
