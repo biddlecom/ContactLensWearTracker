@@ -33,8 +33,8 @@
 
     <!-- Privacy Policy -->
     <string name="privacy_policy_url">https://www.stackoverflow.com</string>
-    <string name="no_internet_browser_installed">You Do Not Have An Internet Browser Installed\n
-        Please Install An Internet App To Complete This Action.</string>
+    <string name="privacy_policy_problem_opening_webpage">Sorry. It Appears The Website Could Not Load.
+        Please Check Your Internet Connection And Try Again.\n \#Maximum Effort!</string>
 
     <!-- Prescription -->
     <string name="prescription_contacts_rx_title">Contacts Prescription</string>

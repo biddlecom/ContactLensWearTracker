@@ -609,22 +609,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             //Respond to a click on the "Privacy Policy" menu option
             case R.id.action_privacy_policy:
-                //TODO: the internet is not working on my phone.  But it works on the emulator.
-                //Getting the url.
-                Uri webpage = Uri.parse(getString(R.string.privacy_policy_url));
-                //This Intent will take the url and send an intent to open an internet browser.
-                Intent internetIntent = new Intent(Intent.ACTION_VIEW, webpage);
-                //Only internet browsing apps should handle this.
-                //Checking to see if there is an internet browsing app on the device and that it is not null.
-                if (internetIntent.resolveActivity(getPackageManager()) != null) {
-                    //If there is an internet browser app installed and it is not null, start the intent.
-                    startActivity(internetIntent);
-                } else {
-                    //If there are no internet browsing apps on the device, display a toast letting the
-                    //user know they need to install an internet browsing app to complete the action.
-                    Toast.makeText(MainActivity.this,
-                            getString(R.string.no_internet_browser_installed), Toast.LENGTH_LONG).show();
-                }
+                //Calling the method that will open our Privacy Policy in a web browser on the users device.
+                contactLensPrivacyPolicyWeb();
                 return true;
             default:
                 //Show a toast letting the user know that there was an error processing their request.
@@ -632,5 +618,23 @@ public class MainActivity extends AppCompatActivity {
                         getString(R.string.menu_options_default_case), Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //This method will parse the privacy policy url and create an intent to launch the webpage so
+    //the user can view our Privacy Policy.
+    private void contactLensPrivacyPolicyWeb() {
+        //Getting the url.
+        Uri webpage = Uri.parse(getString(R.string.privacy_policy_url));
+        //This Intent will take the url and send an intent to open an internet browser.
+        Intent internetIntent = new Intent(Intent.ACTION_VIEW, webpage);
+        //Try starting the internet intent.
+        try{
+            startActivity(internetIntent);
+        } catch (Exception exception) {
+            //If the intent fails, create a toast message letting the user know that the webpage
+            //didn't load and to check their internet and try again.
+            Toast.makeText(MainActivity.this,
+                    getString(R.string.privacy_policy_problem_opening_webpage), Toast.LENGTH_LONG).show();
+        }
     }
 }
