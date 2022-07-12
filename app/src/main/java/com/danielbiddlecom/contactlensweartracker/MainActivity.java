@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -183,6 +184,19 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor currentWearSharedPrefsEditor = sharedPreferencesCurrentWear.edit();
         currentWearSharedPrefsEditor.putString(mCurrentLensCountPref, mCurrentLensCountString);
         currentWearSharedPrefsEditor.apply();
+
+        checkForColorChange();
+    }
+
+    private void checkForColorChange(){
+        switch (mCurrentLensCountInteger){
+            case 0:
+                mMainLensCounterTV.setBackgroundResource(R.color.teal_200);
+                break;
+            case 1:
+                mMainLensCounterTV.setBackgroundResource(R.color.teal_200);
+                break;
+        }
     }
 
     //This method has multiple steps.
