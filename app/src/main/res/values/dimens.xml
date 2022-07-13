@@ -4,6 +4,10 @@
     <dimen name="main_lens_counter_width_height">200dp</dimen>
     <dimen name="main_lens_counter_text_size">150sp</dimen>
 
+    <!-- activity_main.xml main_wear_status_tv -->
+    <dimen name="main_wear_status_margin_top">8dp</dimen>
+    <dimen name="main_wear_status_color_margin_start">8dp</dimen>
+
     <!-- activity_main.xml main_lens_counter_buttons -->
     <dimen name="main_lens_counter_buttons_width_height">48dp</dimen>
 

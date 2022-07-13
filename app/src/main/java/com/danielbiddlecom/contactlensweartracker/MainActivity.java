@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton mPlusButton;
     ImageButton mResetButton;
     TextView mMainLensCounterTV;
+    TextView mMainWearStatusColorTV;
     TextView mMainLastFiveSlotOneTV;
     TextView mMainLastFiveSlotTwoTV;
     TextView mMainLastFiveSlotThreeTV;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     String mLastFiveSlotFourString;
     String mLastFiveSlotFiveString;
     String mAverageWearTimeString;
+    String mCurrentLensCountIntPref;
     int mCurrentLensCountInteger = 0;
     int mLastFiveSlotOneInteger = 0;
     int mLastFiveSlotTwoInteger = 0;
@@ -66,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //This Text View will have a colored background that will change depending on what the number
+        //value is in the mCurrentLensCountInteger.  We will be getting this value from the Shared
+        //Prefs so that we can show the user where they are in their contact lens wear cycle every
+        //time they open the app.
+        //Finding the text view.
+        mMainWearStatusColorTV.findViewById(R.id.main_wear_status_color_tv);
 
         //This button will decrease the count in the "Current Days Worn" counter TextView.
         //Finding the button and setting an onClick Listener on it.
@@ -156,6 +165,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor currentWearSharedPrefsEditor = sharedPreferencesCurrentWear.edit();
         currentWearSharedPrefsEditor.putString(mCurrentLensCountPref, mCurrentLensCountString);
         currentWearSharedPrefsEditor.apply();
+
+        //Calling the method that will check the mCurrentLensCountInteger and then set the correct
+        //color in the Wear Status Text View.
+        checkForColorChange();
     }
 
     //This method will increase the number in the "Current Days Worn" counter TextView by "1".
@@ -185,17 +198,42 @@ public class MainActivity extends AppCompatActivity {
         currentWearSharedPrefsEditor.putString(mCurrentLensCountPref, mCurrentLensCountString);
         currentWearSharedPrefsEditor.apply();
 
+        //Calling the method that will check the mCurrentLensCountInteger and then set the correct
+        //color in the Wear Status Text View.
         checkForColorChange();
     }
 
-    private void checkForColorChange(){
-        switch (mCurrentLensCountInteger){
-            case 0:
-                mMainLensCounterTV.setBackgroundResource(R.color.teal_200);
-                break;
-            case 1:
-                mMainLensCounterTV.setBackgroundResource(R.color.teal_200);
-                break;
+    //This method will check the value of the mCurrentLensCountInteger and then set the appropriate
+    //color in the Wear Status Text View.  This wear status is a visual cue to the user of where
+    //they are in their contact lens wear cycle.  Green is good. Yellow is more than half way through
+    //their wear cycle. Red means stop wearing and change your contacts to avoid damaging your eyes.
+    //We are then going to save the integer into the Shared Prefs so we can show the user the correct
+    //wear status color every time they open the app.
+    private void checkForColorChange() {
+        //Getting the Contact Lens Wear Tracker Shared Preferences.
+        SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+        if (mCurrentLensCountInteger >= 0 && mCurrentLensCountInteger <= 8) {
+            mMainLensCounterTV.setBackgroundResource(R.color.wear_status_green);
+            //Save the Current Lens Count Integer value into the Shared Preferences.
+            SharedPreferences.Editor sharedPrefsCurrentLensCountIntEditor = contactLensWearSharedPreferences.edit();
+            sharedPrefsCurrentLensCountIntEditor.putInt(mCurrentLensCountIntPref, mCurrentLensCountInteger);
+            sharedPrefsCurrentLensCountIntEditor.apply();
+        }
+
+        if (mCurrentLensCountInteger >= 9 && mCurrentLensCountInteger <= 13) {
+            mMainLensCounterTV.setBackgroundResource(R.color.wear_status_yellow);
+            //Save the Current Lens Count Integer value into the Shared Preferences.
+            SharedPreferences.Editor sharedPrefsCurrentLensCountIntEditor = contactLensWearSharedPreferences.edit();
+            sharedPrefsCurrentLensCountIntEditor.putInt(mCurrentLensCountIntPref, mCurrentLensCountInteger);
+            sharedPrefsCurrentLensCountIntEditor.apply();
+        }
+
+        if (mCurrentLensCountInteger >= 14) {
+            mMainLensCounterTV.setBackgroundResource(R.color.wear_status_red);
+            //Save the Current Lens Count Integer value into the Shared Preferences.
+            SharedPreferences.Editor sharedPrefsCurrentLensCountIntEditor = contactLensWearSharedPreferences.edit();
+            sharedPrefsCurrentLensCountIntEditor.putInt(mCurrentLensCountIntPref, mCurrentLensCountInteger);
+            sharedPrefsCurrentLensCountIntEditor.apply();
         }
     }
 
@@ -559,6 +597,8 @@ public class MainActivity extends AppCompatActivity {
             //The user is NOT new so we will get all the values from the shared preferences and put
             //them into their respective text views.
 
+            //TODO: get the CurrentLensCountInteger from the shared prefs and set it into the wear status color textview.
+
             //Get the value of the mCurrentLensCountPref shared preference and update the value of the
             //"Current Days Worn" text view.
             mCurrentLensCountString = contactLensWearSharedPreferences.getString(mCurrentLensCountPref,
@@ -642,7 +682,7 @@ public class MainActivity extends AppCompatActivity {
         //This Intent will take the url and send an intent to open an internet browser.
         Intent internetIntent = new Intent(Intent.ACTION_VIEW, webpage);
         //Try starting the internet intent.
-        try{
+        try {
             startActivity(internetIntent);
         } catch (Exception exception) {
             //If the intent fails, create a toast message letting the user know that the webpage

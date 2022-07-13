@@ -12,6 +12,7 @@
     <string name="main_lens_counter_placeholder">0</string>
     <string name="main_error_calculating_last_five">There was an error calculating your Last Five
         Wear Times. Please try again.</string>
+    <string name="main_wear_status">Wear Status:</string>
 
     <!-- Overflow Menu Main Activity -->
     <string name="action_prescription">Prescription</string>

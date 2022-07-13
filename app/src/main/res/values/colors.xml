@@ -13,5 +13,8 @@
     <color name="gray_50_400">#BDBDBD</color>
     <color name="gray_50_500">#9E9E9E</color>
     <color name="blue_50_a_700">#2962FF</color>
+    <color name="wear_status_green">#078703</color>
+    <color name="wear_status_yellow">#FEE528</color>
+    <color name="wear_status_red">#f30505</color>
 
 </resources>
