@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         //Prefs so that we can show the user where they are in their contact lens wear cycle every
         //time they open the app.
         //Finding the text view.
-        mMainWearStatusColorTV.findViewById(R.id.main_wear_status_color_tv);
+        mMainWearStatusColorTV = findViewById(R.id.main_wear_status_color_tv);
 
         //This button will decrease the count in the "Current Days Worn" counter TextView.
         //Finding the button and setting an onClick Listener on it.
@@ -103,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 resetCurrentDaysWorn();
+                //Resetting the Wear Status Color to Green since we are resetting the Current Lens
+                //Count to zero (0).
+                mMainWearStatusColorTV.setBackgroundResource(R.color.wear_status_green);
             }
         });
 
@@ -213,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         //Getting the Contact Lens Wear Tracker Shared Preferences.
         SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
         if (mCurrentLensCountInteger >= 0 && mCurrentLensCountInteger <= 8) {
-            mMainLensCounterTV.setBackgroundResource(R.color.wear_status_green);
+            mMainWearStatusColorTV.setBackgroundResource(R.color.wear_status_green);
             //Save the Current Lens Count Integer value into the Shared Preferences.
             SharedPreferences.Editor sharedPrefsCurrentLensCountIntEditor = contactLensWearSharedPreferences.edit();
             sharedPrefsCurrentLensCountIntEditor.putInt(mCurrentLensCountIntPref, mCurrentLensCountInteger);
@@ -221,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (mCurrentLensCountInteger >= 9 && mCurrentLensCountInteger <= 13) {
-            mMainLensCounterTV.setBackgroundResource(R.color.wear_status_yellow);
+            mMainWearStatusColorTV.setBackgroundResource(R.color.wear_status_yellow);
             //Save the Current Lens Count Integer value into the Shared Preferences.
             SharedPreferences.Editor sharedPrefsCurrentLensCountIntEditor = contactLensWearSharedPreferences.edit();
             sharedPrefsCurrentLensCountIntEditor.putInt(mCurrentLensCountIntPref, mCurrentLensCountInteger);
@@ -229,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (mCurrentLensCountInteger >= 14) {
-            mMainLensCounterTV.setBackgroundResource(R.color.wear_status_red);
+            mMainWearStatusColorTV.setBackgroundResource(R.color.wear_status_red);
             //Save the Current Lens Count Integer value into the Shared Preferences.
             SharedPreferences.Editor sharedPrefsCurrentLensCountIntEditor = contactLensWearSharedPreferences.edit();
             sharedPrefsCurrentLensCountIntEditor.putInt(mCurrentLensCountIntPref, mCurrentLensCountInteger);
@@ -597,7 +599,11 @@ public class MainActivity extends AppCompatActivity {
             //The user is NOT new so we will get all the values from the shared preferences and put
             //them into their respective text views.
 
-            //TODO: get the CurrentLensCountInteger from the shared prefs and set it into the wear status color textview.
+            //Getting the Current Lens Count Integer from the Shared Preferences and then calling
+            //the checkForColorChange method to determine what color to set in the Wear Status
+            //text view.
+            mCurrentLensCountInteger = contactLensWearSharedPreferences.getInt(mCurrentLensCountIntPref, 0);
+            checkForColorChange();
 
             //Get the value of the mCurrentLensCountPref shared preference and update the value of the
             //"Current Days Worn" text view.
