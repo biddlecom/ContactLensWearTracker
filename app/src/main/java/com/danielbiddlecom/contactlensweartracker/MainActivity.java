@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton mResetButton;
     TextView mMainLensCounterTV;
     TextView mMainWearStatusColorTV;
+    TextView mMainLastWornActualDateTV;
     TextView mMainLastFiveSlotOneTV;
     TextView mMainLastFiveSlotTwoTV;
     TextView mMainLastFiveSlotThreeTV;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Getting the member variables that will hold the information in the textviews.
     String mCurrentLensCountString;
+    String mLastWornActualDateString;
     String mLastFiveSlotOneString;
     String mLastFiveSlotTwoString;
     String mLastFiveSlotThreeString;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     //Shared Prefs Member Variables.
     String mIsTheUserNewPref = "isTheUserNewPref";
     String mCurrentLensCountPref = "currentLensCountPref";
+    String mLastWornActualDatePref = "lastWornActualDatePref";
     String mLastFiveSlotOnePref = "lastFiveSlotOnePref";
     String mLastFiveSlotTwoPref = "lastFiveSlotTwoPref";
     String mLastFiveSlotThreePref = "lastFiveSlotThreePref";
@@ -74,6 +77,12 @@ public class MainActivity extends AppCompatActivity {
         //time they open the app.
         //Finding the text view.
         mMainWearStatusColorTV = findViewById(R.id.main_wear_status_color_tv);
+
+        //This Text View will change every time the increment button is pressed.  It will display
+        //the date that the user last wore their contact lens.  It is a way to visually help the
+        //user keep track of when they last wore their contact lenses in case they don't wear them
+        //every day or if they forget to increment the counter after each time they wear the lenses.
+        mMainLastWornActualDateTV = findViewById(R.id.main_last_worn_actual_date_tv);
 
         //This button will decrease the count in the "Current Days Worn" counter TextView.
         //Finding the button and setting an onClick Listener on it.
@@ -203,6 +212,9 @@ public class MainActivity extends AppCompatActivity {
         //Calling the method that will check the mCurrentLensCountInteger and then set the correct
         //color in the Wear Status Text View.
         checkForColorChange();
+
+        //TODO call the method that will change the last worn date to the current date.  Also put
+        // the date into the shared prefs so that it can be shown every time the user uses the app.
     }
 
     //This method will check the value of the mCurrentLensCountInteger and then set the appropriate
@@ -573,6 +585,7 @@ public class MainActivity extends AppCompatActivity {
             //Save the values into the Shared Preferences.
             SharedPreferences.Editor sharedPrefsCurrentDaysWornEditor = contactLensWearSharedPreferences.edit();
             sharedPrefsCurrentDaysWornEditor.putBoolean(mIsTheUserNewPref, mIsTheUserNew);
+            sharedPrefsCurrentDaysWornEditor.putString(mLastWornActualDatePref, getString(R.string.main_last_worn_actual_date_no_data));
             sharedPrefsCurrentDaysWornEditor.putString(mCurrentLensCountPref, getString(R.string.main_lens_counter_placeholder));
             sharedPrefsCurrentDaysWornEditor.putString(mLastFiveSlotOnePref, getString(R.string.main_lens_counter_placeholder));
             sharedPrefsCurrentDaysWornEditor.putString(mLastFiveSlotTwoPref, getString(R.string.main_lens_counter_placeholder));
@@ -584,6 +597,9 @@ public class MainActivity extends AppCompatActivity {
 
             //Update the "Current Days Worn" text view with the starting value of zero ("0").
             mMainLensCounterTV.setText(R.string.main_lens_counter_placeholder);
+
+            //Update the "Last Worn Actual Date" text view with the starting value of ("No data Yet").
+            mMainLastWornActualDateTV.setText(R.string.main_last_worn_actual_date_no_data);
 
             //Update the "Last Five Wear Times" text views with the starting value of zero ("0").
             mMainLastFiveSlotOneTV.setText(R.string.main_lens_counter_placeholder);
@@ -610,6 +626,12 @@ public class MainActivity extends AppCompatActivity {
             mCurrentLensCountString = contactLensWearSharedPreferences.getString(mCurrentLensCountPref,
                     getString(R.string.main_lens_counter_placeholder));
             mMainLensCounterTV.setText(mCurrentLensCountString);
+
+            //Get the value of the mLastWornActualDatePref from the shared preference and update the
+            //value of the "Last Worn" actual date text view.
+            mLastWornActualDateString = contactLensWearSharedPreferences.getString(mLastWornActualDatePref,
+                    getString(R.string.main_last_worn_actual_date_no_data));
+            mMainLastWornActualDateTV.setText(mLastWornActualDateString);
 
             //Getting the values of the mLastFiveSlotPrefs (slots 1-5) from the shared preferences
             //and update the value of the "Last Five Wear Times" text views.

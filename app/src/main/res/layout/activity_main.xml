@@ -28,6 +28,7 @@
             android:text="@string/main_wear_status"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_current_days_worn_tv" />
 
@@ -41,6 +42,29 @@
             app:layout_constraintTop_toTopOf="@+id/main_wear_status_tv" />
 
         <TextView
+            android:id="@+id/main_last_worn_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/main_last_worn_date_margin_top"
+            android:text="@string/main_last_worn_date"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.35"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_wear_status_tv" />
+
+        <TextView
+            android:id="@+id/main_last_worn_actual_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_wear_status_color_margin_start"
+            android:text="@string/main_last_worn_actual_date_placeholder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toBottomOf="@+id/main_last_worn_date_tv"
+            app:layout_constraintStart_toEndOf="@+id/main_last_worn_date_tv"
+            app:layout_constraintTop_toTopOf="@+id/main_last_worn_date_tv" />
+
+        <TextView
             android:id="@+id/main_lens_counter_tv"
             android:layout_width="@dimen/main_lens_counter_width_height"
             android:layout_height="@dimen/main_lens_counter_width_height"
@@ -51,7 +75,7 @@
             android:textSize="@dimen/main_lens_counter_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_wear_status_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/main_last_worn_date_tv" />
 
         <ImageButton
             android:id="@+id/main_minus_button"

@@ -13,6 +13,9 @@
     <string name="main_error_calculating_last_five">There was an error calculating your Last Five
         Wear Times. Please try again.</string>
     <string name="main_wear_status">Wear Status:</string>
+    <string name="main_last_worn_date">Last Worn:</string>
+    <string name="main_last_worn_actual_date_placeholder">01-01-2022</string>
+    <string name="main_last_worn_actual_date_no_data">No Data Yet</string>
 
     <!-- Overflow Menu Main Activity -->
     <string name="action_prescription">Prescription</string>
