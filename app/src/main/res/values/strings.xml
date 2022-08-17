@@ -33,7 +33,8 @@
     <string name="credits_no_email_app_on_device">There Are No Email Apps On This Device.
         \nPlease Install An Email App On This Device.</string>
     <string name="credits_credit_heading">Credits:</string>
-    <string name="credits_credit_body">Google @Google:\nPlus ( + ) icon\nMinus ( - ) icon\n\nContact Lens Tracker logo:\nDaniel Biddlecom</string>
+    <string name="credits_credit_body">Google @Google:\nPlus ( + ) icon\nMinus ( - ) icon\n
+        Refresh icon\n\nDaniel Biddlecom:\nContact Lens Wear Tracker logo</string>
 
     <!-- Privacy Policy -->
     <string name="privacy_policy_url">https://www.stackoverflow.com</string>

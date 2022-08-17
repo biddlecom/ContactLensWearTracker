@@ -13,6 +13,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     //Getting the Buttons and TextViews.
@@ -213,8 +217,8 @@ public class MainActivity extends AppCompatActivity {
         //color in the Wear Status Text View.
         checkForColorChange();
 
-        //TODO call the method that will change the last worn date to the current date.  Also put
-        // the date into the shared prefs so that it can be shown every time the user uses the app.
+        //Calling the method that will get the current date from the users device.
+        getTheDate();
     }
 
     //This method will check the value of the mCurrentLensCountInteger and then set the appropriate
@@ -249,6 +253,25 @@ public class MainActivity extends AppCompatActivity {
             sharedPrefsCurrentLensCountIntEditor.putInt(mCurrentLensCountIntPref, mCurrentLensCountInteger);
             sharedPrefsCurrentLensCountIntEditor.apply();
         }
+    }
+
+    //This method will get the current date from the users device and set it on the Last Worn Actual
+    //Date text view.  We will then save that date into the Shared Prefs so that it can be recalled
+    //every time the user enters the app.  The date will obviously be updated every time the user
+    //clicks the increment button. NOTE: The user will only see a different date if they click the
+    //increment button on a date that is different from the one shown in the Last Worn Actual Date.
+    private void getTheDate(){
+        //Getting the date and formatting it into a Month-Day-Year format.
+        mLastWornActualDateString = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(new Date());
+        //Setting the newly formatted date onto the Last Worn Actual Date text view.
+        mMainLastWornActualDateTV.setText(mLastWornActualDateString);
+
+        //Getting the Contact Lens Wear Tracker Shared Preferences.
+        SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+        //Save the last worn actual date into the Shared Preferences.
+        SharedPreferences.Editor sharedPrefsLastWornDateEditor = contactLensWearSharedPreferences.edit();
+        sharedPrefsLastWornDateEditor.putString(mLastWornActualDatePref, mLastWornActualDateString);
+        sharedPrefsLastWornDateEditor.apply();
     }
 
     //This method has multiple steps.
