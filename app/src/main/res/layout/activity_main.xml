@@ -114,6 +114,7 @@
             app:layout_constraintTop_toBottomOf="@+id/main_lens_counter_tv" />
 
         <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@color/gray_50_300"
@@ -214,10 +215,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/average_wear_time_tv_margin_start"
             android:layout_marginTop="@dimen/average_wear_time_tv_margin_top"
-            android:layout_marginBottom="@dimen/average_wear_time_tv_margin_bottom"
             android:text="@string/main_average_wear"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_linear_layout_last_five" />
 
@@ -231,6 +230,18 @@
             app:layout_constraintBottom_toBottomOf="@+id/average_wear_time_tv"
             app:layout_constraintStart_toEndOf="@+id/average_wear_time_tv"
             app:layout_constraintTop_toTopOf="@+id/average_wear_time_tv" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/google_ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544~3347511713"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/average_wear_time_tv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -13,6 +13,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     TextView mMainLastFiveSlotFourTV;
     TextView mMainLastFiveSlotFiveTV;
     TextView mAverageWearTimeNumberTV;
+    private AdView mAdView;
 
     //Getting the member variables that will hold the information in the textviews.
     String mCurrentLensCountString;
@@ -141,6 +148,20 @@ public class MainActivity extends AppCompatActivity {
         //Calling the method that will check to see if this is the first time the user has opened
         //the app. (Checking to see if this is a new user).
         isTheUserNew();
+
+
+
+
+        //TODO  TESTING GOOGLE ADVIEW
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = findViewById(R.id.google_ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
     } //End of OnCreate.

@@ -22,7 +22,7 @@
     <dimen name="linear_layout_margin_top">8dp</dimen>
     <dimen name="average_wear_time_tv_margin_top">24dp</dimen>
     <dimen name="average_wear_time_tv_margin_start">12dp</dimen>
-    <dimen name="average_wear_time_tv_margin_bottom">24dp</dimen>
+    <dimen name="average_wear_time_tv_margin_bottom">12dp</dimen>
     <dimen name="average_wear_time_number_tv_margin_start">8dp</dimen>
     <dimen name="main_minus_button_margin_end">12dp</dimen>
     <dimen name="main_plus_button_margin_start">12dp</dimen>
