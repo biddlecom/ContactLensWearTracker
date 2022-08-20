@@ -1,73 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Credits">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_weight="25">
 
-        <ImageView
-            android:id="@+id/credits_app_logo"
-            android:layout_width="@dimen/credits_logo_image_width_height"
-            android:layout_height="@dimen/credits_logo_image_width_height"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/credits_logo_image_margin_top"
-            android:layout_marginBottom="@dimen/credits_logo_image_margin_bottom"
-            android:contentDescription="@string/credits_logo_image_content_description"
-            android:src="@drawable/contact_lens_tracker_icon_512" />
-
-        <TextView
-            android:id="@+id/credits_app_info_text_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/credits_app_info_margin_bottom"
-            android:gravity="center"
-            android:text="@string/credits_app_info"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/credits_contact_heading_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/credits_contact_heading_margin_bottom"
-            android:gravity="center"
-            android:text="@string/credits_contact_heading"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            <ImageView
+                android:id="@+id/credits_app_logo"
+                android:layout_width="@dimen/credits_logo_image_width_height"
+                android:layout_height="@dimen/credits_logo_image_width_height"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/credits_logo_image_margin_top"
+                android:layout_marginBottom="@dimen/credits_logo_image_margin_bottom"
+                android:contentDescription="@string/credits_logo_image_content_description"
+                android:src="@drawable/contact_lens_tracker_icon_512" />
 
-        <TextView
-            android:id="@+id/credits_contact_email_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/credits_contact_email_margin_bottom"
-            android:gravity="center"
-            android:text="@string/credits_contact_email_address"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/purple_500" />
+            <TextView
+                android:id="@+id/credits_app_info_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/credits_app_info_margin_bottom"
+                android:gravity="center"
+                android:text="@string/credits_app_info"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <TextView
-            android:id="@+id/credits_credit_heading_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/credits_credit_heading_margin_bottom"
-            android:gravity="center"
-            android:text="@string/credits_credit_heading"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            <TextView
+                android:id="@+id/credits_contact_heading_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/credits_contact_heading_margin_bottom"
+                android:gravity="center"
+                android:text="@string/credits_contact_heading"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <TextView
-            android:id="@+id/credits_credit_body_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingBottom="@dimen/credits_credit_body_padding_bottom"
-            android:text="@string/credits_credit_body"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            <TextView
+                android:id="@+id/credits_contact_email_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/credits_contact_email_margin_bottom"
+                android:gravity="center"
+                android:text="@string/credits_contact_email_address"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/purple_500" />
 
+            <TextView
+                android:id="@+id/credits_credit_heading_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/credits_credit_heading_margin_bottom"
+                android:gravity="center"
+                android:text="@string/credits_credit_heading"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/credits_credit_body_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/credits_credit_body_padding_bottom"
+                android:text="@string/credits_credit_body"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-</ScrollView>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/google_ad_view_credits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/credits_adview_margin_top"
+        android:layout_weight="1"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+
+</LinearLayout>

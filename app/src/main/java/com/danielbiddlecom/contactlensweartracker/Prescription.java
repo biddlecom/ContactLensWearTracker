@@ -9,6 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import java.util.Objects;
 
 public class Prescription extends AppCompatActivity {
@@ -34,6 +42,7 @@ public class Prescription extends AppCompatActivity {
     AppCompatEditText mPrescriptionGlassesLeftBaseET;
     AppCompatEditText mPrescriptionGlassesRightBaseET;
     Button mGlassesSaveButton;
+    private AdView mAdViewPrescription;
 
     //Shared Prefs Constants.
     public static final String CONTACT_LENS_WEAR_TRACKER_PREFS =
@@ -132,8 +141,56 @@ public class Prescription extends AppCompatActivity {
         //Calling the method that will check to see if the user is new or not.
         isUserNewPrescriptionActivity();
 
+        //Google Admob ads.
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        //Finding the Adview and showing ads in it.
+        mAdViewPrescription = findViewById(R.id.google_ad_view_prescription);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdViewPrescription.loadAd(adRequest);
+
+        //Overrides for Google Admob.
+        mAdViewPrescription.setAdListener(new AdListener() {
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                // Code to be executed when an ad request fails.
+            }
+
+            @Override
+            public void onAdImpression() {
+                // Code to be executed when an impression is recorded
+                // for an ad.
+            }
+
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+        });
+
     }  //End Of OnCreate
-    
+
     //This method will check to see if the user is new or not.
     //If they are new, then put the new preference and boolean in the shared prefs.
     //If they are not new then get the info from the shared preferences and set the text on the text views.

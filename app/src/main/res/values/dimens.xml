@@ -27,7 +27,7 @@
     <dimen name="main_minus_button_margin_end">12dp</dimen>
     <dimen name="main_plus_button_margin_start">12dp</dimen>
     <dimen name="main_reset_button_margin_top">12dp</dimen>
-    <dimen name="main_adview_margin_top">16dp</dimen>
+    <dimen name="main_adview_margin_top">20dp</dimen>
 
     <!-- activity_credits.xml -->
     <dimen name="credits_logo_image_width_height">200dp</dimen>
@@ -38,6 +38,7 @@
     <dimen name="credits_contact_email_margin_bottom">16dp</dimen>
     <dimen name="credits_credit_heading_margin_bottom">4dp</dimen>
     <dimen name="credits_credit_body_padding_bottom">16dp</dimen>
+    <dimen name="credits_adview_margin_top">25dp</dimen>
 
     <!-- glasses and contacts prescription layouts -->
     <dimen name="prescription_glasses_title_padding_bottom">12dp</dimen>
@@ -52,6 +53,8 @@
     <dimen name="prescription_contacts_save_button_margin_top">12dp</dimen>
     <dimen name="prescription_glasses_save_button_margin_top">12dp</dimen>
     <dimen name="prescription_save_buttons_margin_start_end">32dp</dimen>
+    <dimen name="prescription_adview_margin_top">12dp</dimen>
+    <dimen name="prescription_adview_margin_bottom">25dp</dimen>
 
 
 </resources>

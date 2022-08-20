@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -222,6 +221,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/average_wear_time_tv_margin_start"
                 android:layout_marginTop="@dimen/average_wear_time_tv_margin_top"
+                android:layout_marginBottom="@dimen/average_wear_time_tv_margin_bottom"
                 android:text="@string/main_average_wear"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintStart_toStartOf="parent"

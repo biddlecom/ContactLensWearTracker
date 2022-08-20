@@ -316,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
     //every time the user enters the app.  The date will obviously be updated every time the user
     //clicks the increment button. NOTE: The user will only see a different date if they click the
     //increment button on a date that is different from the one shown in the Last Worn Actual Date.
-    private void getTheDate(){
+    private void getTheDate() {
         //Getting the date and formatting it into a Month-Day-Year format.
         mLastWornActualDateString = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(new Date());
         //Setting the newly formatted date onto the Last Worn Actual Date text view.
