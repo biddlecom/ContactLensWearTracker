@@ -3,6 +3,7 @@
     <!-- activity_main.xml main_lens_counter_tv -->
     <dimen name="main_lens_counter_width_height">200dp</dimen>
     <dimen name="main_lens_counter_text_size">150sp</dimen>
+    <dimen name="main_lens_counter_margin_top">8dp</dimen>
 
     <!-- activity_main.xml main_wear_status_tv -->
     <dimen name="main_wear_status_margin_top">8dp</dimen>

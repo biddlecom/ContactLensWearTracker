@@ -337,7 +337,9 @@ public class MainActivity extends AppCompatActivity {
     //to four, four will move to five and five will drop off and disappear. Spot one is currently
     //vacant.  Spot one will be filled by the Current Days Worn value. To accomplish this we will
     //have to work in reverse, starting with position five and working backwards to position one and
-    //then the Current Days Worn number.
+    //then the Current Days Worn number.  Once we have all of the current numbers in the "Last Five
+    //Wear Times" we will add them up and then divide by 5 (or the actual amount we have) to get the
+    //"Average Wear Time" number.
     //
     //Directions for working backwards...
     //FIRST- get the value from the MainLastFiveSlotFour TextView and save it in the

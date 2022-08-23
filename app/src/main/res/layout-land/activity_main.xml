@@ -34,7 +34,7 @@
                 android:text="@string/main_wear_status"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.18"
+                app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="@+id/main_current_days_worn_tv"
                 app:layout_constraintTop_toBottomOf="@+id/main_current_days_worn_tv" />
 
@@ -55,7 +55,7 @@
                 android:text="@string/main_last_worn_date"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintHorizontal_bias="0.02"
                 app:layout_constraintStart_toStartOf="@id/main_current_days_worn_tv"
                 app:layout_constraintTop_toBottomOf="@+id/main_wear_status_tv" />
 
@@ -93,6 +93,8 @@
                 android:src="@drawable/minus_circle_outline_black_48dp"
                 app:layout_constraintBottom_toBottomOf="@+id/main_lens_counter_tv"
                 app:layout_constraintEnd_toStartOf="@+id/main_lens_counter_tv"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/main_lens_counter_tv" />
 
             <ImageButton
@@ -104,6 +106,8 @@
                 android:contentDescription="@string/main_plus_button_description"
                 android:src="@drawable/plus_circle_outline_black_48dp"
                 app:layout_constraintBottom_toBottomOf="@+id/main_lens_counter_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toEndOf="@+id/main_lens_counter_tv"
                 app:layout_constraintTop_toTopOf="@id/main_lens_counter_tv" />
 
