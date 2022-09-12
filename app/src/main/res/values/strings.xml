@@ -26,7 +26,7 @@
 
     <!-- Credits Activity -->
     <string name="credits_logo_image_content_description">Biddlecom Studios Logo</string>
-    <string name="credits_app_info">Biddlecom Studios \nContact Lens Wear Tracker \nVersion 1.0</string>
+    <string name="credits_app_info">Biddlecom Studios \nContact Lens Wear Tracker \nVersion 1.1</string>
     <string name="credits_contact_heading">Contact:</string>
     <string name="credits_contact_email_address">daniel.biddlecom@gmail.com</string>
     <string name="credits_contact_email_subject">Contact Lens Wear Tracker</string>

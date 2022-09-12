@@ -377,6 +377,8 @@ public class MainActivity extends AppCompatActivity {
     //
     //LASTLY- reset the number in the "Current Days Worn" counter TextView to "0" (zero).
     private void resetCurrentDaysWorn() {
+        //Getting the Contact Lens Wear Tracker Shared Preferences.
+        SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
 
         //STEP ONE- getting the information from LastFiveSlotFour TextView and saving it in the
         //mLastFiveSlotFiveString member variable.
@@ -448,7 +450,20 @@ public class MainActivity extends AppCompatActivity {
         //step six.
 
         //LASTLY- (Re)set the value of the "Current Days Worn" counter TextView to "0" (zero).
+        //ALSO- save the "0" (zero) into the shared preferences so that it shows zero in the "Current
+        //Days Worn" counter when the user returns to the app, instead of the last saved value
+        //(for Example: "14").
+        //There was a bug where if the user hit the reset button and then immediately got out of the
+        //app.  The next time they got into the app it would show their last saved "Current Days Worn"
+        //value (for example: "14") instead of "0" (zero). The bug was not there if the user hit the
+        //reset button, then hit the increment button before getting out of the app.
         mMainLensCounterTV.setText(getString(R.string.main_lens_counter_placeholder));
+        mCurrentLensCountInteger = 0;
+        mCurrentLensCountString= String.valueOf(mCurrentLensCountInteger);
+        //Save the Current Lens Count Integer value into the Shared Preferences.
+        SharedPreferences.Editor sharedPrefsCurrentLensCountStringEditor = contactLensWearSharedPreferences.edit();
+        sharedPrefsCurrentLensCountStringEditor.putString(mCurrentLensCountPref, mCurrentLensCountString);
+        sharedPrefsCurrentLensCountStringEditor.apply();
     }
 
     //This method will calculate the Average Wear Time of the user based on the Last Five Wear Times.
