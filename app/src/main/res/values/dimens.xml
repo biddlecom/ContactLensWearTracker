@@ -12,6 +12,13 @@
     <!-- activity_main.xml main_wear_status_tv -->
     <dimen name="main_last_worn_date_margin_top">8dp</dimen>
 
+    <!-- activity_main.xml main_last_worn_pencil_edit_icon_iv -->
+    <dimen name="main_wear_status_pencil_icon_start">16dp</dimen>
+    <dimen name="main_wear_status_pencil_icon_padding">12dp</dimen>
+
+    <!-- activity_edit_last_worn_date.xml -->
+    <dimen name="edit_last_worn_date_instructions_margin_top">12dp</dimen>
+
     <!-- activity_main.xml main_lens_counter_buttons -->
     <dimen name="main_lens_counter_buttons_width_height">48dp</dimen>
 

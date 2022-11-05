@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Getting the Buttons and TextViews.
+    //Getting the Buttons, TextViews and ImageView.
     ImageButton mMinusButton;
     ImageButton mPlusButton;
     ImageButton mResetButton;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     TextView mMainLastFiveSlotFourTV;
     TextView mMainLastFiveSlotFiveTV;
     TextView mAverageWearTimeNumberTV;
+    ImageView mMainLastWornPencilIconIV;
     private AdView mAdView;
 
     //Getting the member variables that will hold the information in the textviews.
@@ -96,6 +98,17 @@ public class MainActivity extends AppCompatActivity {
         //user keep track of when they last wore their contact lenses in case they don't wear them
         //every day or if they forget to increment the counter after each time they wear the lenses.
         mMainLastWornActualDateTV = findViewById(R.id.main_last_worn_actual_date_tv);
+
+        //When the user clicks on the pencil icon Image View it will take them to the Edit Last
+        //Worn Date activity.
+        mMainLastWornPencilIconIV = findViewById(R.id.main_last_worn_pencil_edit_icon_iv);
+        mMainLastWornPencilIconIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentToEditLastWornDateActivity = new Intent(MainActivity.this, EditLastWornDate.class);
+                startActivity(intentToEditLastWornDateActivity);
+            }
+        });
 
         //This button will decrease the count in the "Current Days Worn" counter TextView.
         //Finding the button and setting an onClick Listener on it.

@@ -24,9 +24,13 @@
     <string name="menu_options_default_case">Whoops! It Appears The App Made A Mistake.\n
         Please Try Again.\n \#MaximumEffort!</string>
 
+    <!-- Edit Last Worn Date Activity -->
+    <string name="edit_last_worn_date_instructions">blah blah blah</string>
+    <string name="edit_last_worn_date_month_title">Month</string>
+
     <!-- Credits Activity -->
     <string name="credits_logo_image_content_description">Biddlecom Studios Logo</string>
-    <string name="credits_app_info">Biddlecom Studios \nContact Lens Wear Tracker \nVersion 1.1</string>
+    <string name="credits_app_info">Biddlecom Studios \nContact Lens Wear Tracker \nVersion 1.2</string>
     <string name="credits_contact_heading">Contact:</string>
     <string name="credits_contact_email_address">daniel.biddlecom@gmail.com</string>
     <string name="credits_contact_email_subject">Contact Lens Wear Tracker</string>
