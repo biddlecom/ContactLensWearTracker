@@ -25,8 +25,18 @@
         Please Try Again.\n \#MaximumEffort!</string>
 
     <!-- Edit Last Worn Date Activity -->
-    <string name="edit_last_worn_date_instructions">blah blah blah</string>
+    <string name="edit_last_worn_date_instructions">If you need to change the Last Worn date for
+        any reason, simply fill in the fields below with the desired information then click the
+        \"Submit\" button.  Your changes will be automatically saved and you will be taken back to the
+        main page where you will see the Last Worn date updated to your desired date.\n\nYou must
+        enter two digits for the Month, two digits for the Day and four digits for the Year.</string>
     <string name="edit_last_worn_date_month_title">Month</string>
+    <string name="edit_last_worn_date_month_hint">01</string>
+    <string name="edit_last_worn_date_day_title">Day</string>
+    <string name="edit_last_worn_date_day_hint">30</string>
+    <string name="edit_last_worn_date_year_title">Year</string>
+    <string name="edit_last_worn_date_year_hint">2022</string>
+    <string name="edit_last_worn_date_submit_button">Submit</string>
 
     <!-- Credits Activity -->
     <string name="credits_logo_image_content_description">Biddlecom Studios Logo</string>

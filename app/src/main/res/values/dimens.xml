@@ -18,6 +18,13 @@
 
     <!-- activity_edit_last_worn_date.xml -->
     <dimen name="edit_last_worn_date_instructions_margin_top">12dp</dimen>
+    <dimen name="edit_last_worn_date_adview_margin_top">12dp</dimen>
+    <dimen name="edit_last_worn_date_adview_margin_bottom">25dp</dimen>
+    <dimen name="edit_last_worn_date_instruction_tv_padding">12dp</dimen>
+    <dimen name="edit_last_worn_date_month_title_tv_margin_top">16dp</dimen>
+    <dimen name="edit_last_worn_date_day_title_tv_margin_top">16dp</dimen>
+    <dimen name="edit_last_worn_date_year_title_tv_margin_top">16dp</dimen>
+    <dimen name="edit_last_worn_date_submit_button_margin_top">30dp</dimen>
 
     <!-- activity_main.xml main_lens_counter_buttons -->
     <dimen name="main_lens_counter_buttons_width_height">48dp</dimen>
