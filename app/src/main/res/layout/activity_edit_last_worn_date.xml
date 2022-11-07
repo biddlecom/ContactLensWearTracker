@@ -15,7 +15,7 @@
         android:layout_marginTop="@dimen/edit_last_worn_date_adview_margin_top"
         android:layout_marginBottom="@dimen/edit_last_worn_date_adview_margin_bottom"
         app:adSize="BANNER"
-        app:adUnitId="" />
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -66,6 +66,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/edit_last_worn_date_month_hint"
+                android:inputType="date"
+                android:maxLength="2"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintBottom_toBottomOf="@+id/edit_last_worn_date_month_title_tv"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -86,6 +88,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/edit_last_worn_date_day_hint"
+                android:inputType="date"
+                android:maxLength="2"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintBottom_toBottomOf="@+id/edit_last_worn_date_day_title_tv"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -106,6 +110,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/edit_last_worn_date_year_hint"
+                android:inputType="date"
+                android:maxLength="4"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintBottom_toBottomOf="@+id/edit_last_worn_date_year_title_tv"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"

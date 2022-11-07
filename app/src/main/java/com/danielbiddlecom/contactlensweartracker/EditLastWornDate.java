@@ -2,11 +2,14 @@ package com.danielbiddlecom.contactlensweartracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -118,32 +121,65 @@ public class EditLastWornDate extends AppCompatActivity {
 
     } //End of onCreate.
 
-    //This method that will get the data from the EditTexts and then convert it
-    //into the proper date format (MM-dd-yyyy). Then it will save that newly formatted
-    //date into the Shared Prefs before returning the user to the MainActivity.
-    private void submitButtonClicked(){
-        //TODO: check to make sure the user input the correct amount of numbers into the field.
-        // 2 for the month, 2 for the day and 4 for the year.
+    //This method will get the user data from the EditTexts and then perform a check to make sure
+    //they entered the correct amount of digits into each edit text.  If they entered the correct
+    //amount of digits in each field, convert it into the proper date format (MM-dd-yyyy). Then we
+    //will save that newly formatted date into the Shared Prefs before returning the user back to
+    //the MainActivity.
+    private void submitButtonClicked() {
+        //Getting the user data from the Month edit text and saving it in a string.
         mNewMonthString = mEditLastWornDateMonthET.getText().toString();
-        //TODO: check
+        //Checking to make sure the mNewMonthString is equal to 2 (digits). If they didn't enter
+        //anything or if they only entered 1 digit, show a toast letting the user know they need to
+        //check the amount of numbers they entered into the Month edit text.
+        if (mNewMonthString.length() != 2) {
+            Toast.makeText(EditLastWornDate.this, getText(R.string.edit_last_worn_date_toast_wrong_length),
+                    Toast.LENGTH_SHORT).show();
+        }
 
+        //Getting the user data from the Day edit text and saving it in a string.
         mNewDayString = mEditLastWornDateDayET.getText().toString();
-        //TODO: check
+        //Checking to make sure the mNewDayString is equal to 2 (digits). If they didn't enter anything
+        //or if they only entered 1 digit, show a toast letting the user know they need to check the
+        //amount of numbers they entered into the Day edit text.
+        if (mNewDayString.length() != 2) {
+            Toast.makeText(EditLastWornDate.this, getText(R.string.edit_last_worn_date_toast_wrong_length),
+                    Toast.LENGTH_SHORT).show();
+        }
 
+        //Getting the user data from the Year edit text and saving it in a string.
         mNewYearString = mEditLastWornDateYearET.getText().toString();
-        //TODO: check
+        //Checking to make sure the mNewYearString is equal to 4 (digits). If they didn't enter anything
+        //or if they only entered 1, 2 or 3 digits, show a toast letting the user know they need to
+        //check the amount of numbers they entered into the Year edit text.
+        if (mNewYearString.length() != 4) {
+            Toast.makeText(EditLastWornDate.this, getText(R.string.edit_last_worn_date_toast_wrong_length),
+                    Toast.LENGTH_SHORT).show();
+        }
 
+        //TODO: make the code stop from going beyond this point if the user enters less than the
+        // required amount of digits.  Right now the code just continues on regardless of the amount
+        // of digits the user enters.
 
-        //TODO: format it into MM-DD-YYYY.
-        //Formatting the strings into the proper date format (MM-dd-yyyy).
+        //Formatting the Month, Day and Year strings into the proper date format (MM-dd-yyyy).
+        //We will save the final formatted string into the mFinalNewDateString variable.
         mFinalNewDateString = mNewMonthString + "-" + mNewDayString + "-" + mNewYearString;
 
-        //TODO: save it into the shared prefs.
+        //Putting the newly formatted date string into the shared preferences.
+        //Getting an instance of the Contact Lens Wear Tracker shared preference.
+        SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+        //Save the newly formed date string into the Shared Preferences.
+        SharedPreferences.Editor sharedPrefsNewWornDateEditor = contactLensWearSharedPreferences.edit();
+        sharedPrefsNewWornDateEditor.putString(mLastWornActualDatePref, mFinalNewDateString);
+        sharedPrefsNewWornDateEditor.apply();
+        //Show a toast message letting the user know that their newly formed date has been successfully
+        //saved.
+        Toast.makeText(EditLastWornDate.this, getText(R.string.edit_last_worn_date_toast_successfully_saved),
+                Toast.LENGTH_LONG).show();
 
-
-        //TODO: return the user to the MainActivity.
-
+        //Send the user back to the MainActivity where they will see their new chosen date displayed
+        //as the Last Worn date.
+        Intent intentToMainActivity = new Intent(EditLastWornDate.this, MainActivity.class);
+        startActivity(intentToMainActivity);
     }
-
-
 }

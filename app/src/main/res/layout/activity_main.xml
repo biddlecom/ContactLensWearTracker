@@ -70,6 +70,17 @@
                 app:layout_constraintStart_toEndOf="@+id/main_last_worn_date_tv"
                 app:layout_constraintTop_toTopOf="@+id/main_last_worn_date_tv" />
 
+            <ImageView
+                android:id="@+id/main_last_worn_pencil_edit_icon_iv"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_baseline_edit_24"
+                android:padding="@dimen/main_wear_status_pencil_icon_padding"
+                android:layout_marginStart="@dimen/main_wear_status_pencil_icon_start"
+                app:layout_constraintBottom_toBottomOf="@+id/main_last_worn_actual_date_tv"
+                app:layout_constraintStart_toEndOf="@+id/main_last_worn_actual_date_tv"
+                app:layout_constraintTop_toTopOf="@+id/main_last_worn_actual_date_tv" />
+
             <TextView
                 android:id="@+id/main_lens_counter_tv"
                 android:layout_width="@dimen/main_lens_counter_width_height"

@@ -37,6 +37,9 @@
     <string name="edit_last_worn_date_year_title">Year</string>
     <string name="edit_last_worn_date_year_hint">2022</string>
     <string name="edit_last_worn_date_submit_button">Submit</string>
+    <string name="edit_last_worn_date_toast_wrong_length">Please check the length of the Month, Day
+        and Year. See instructions above for more details.</string>
+    <string name="edit_last_worn_date_toast_successfully_saved">Your new date has been successfully saved!</string>
 
     <!-- Credits Activity -->
     <string name="credits_logo_image_content_description">Biddlecom Studios Logo</string>
