@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
@@ -21,14 +20,10 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 public class EditLastWornDate extends AppCompatActivity {
 
-    //Getting the TextViews, EditTexts and Button.
+    //Getting the AdView, EditTexts and Button.
     private AdView mAdView;
-    //TextView mEditLastWornDateInstructionsTV;
-    //TextView mEditLastWornDateMonthTitleTV;
     EditText mEditLastWornDateMonthET;
-    //TextView mEditLastWornDateDayTitleTV;
     EditText mEditLastWornDateDayET;
-    //TextView mEditLastWornDateYearTitleTV;
     EditText mEditLastWornDateYearET;
     Button mEditLastWornDateSubmitButton;
 
@@ -127,40 +122,65 @@ public class EditLastWornDate extends AppCompatActivity {
     //will save that newly formatted date into the Shared Prefs before returning the user back to
     //the MainActivity.
     private void submitButtonClicked() {
+
+        //Calling the method that will get and check the data from the Month edit text.
+        getAndCheckMonthData();
+    }
+
+    //This method will get and check the user data from the Month edit text.
+    private void getAndCheckMonthData() {
         //Getting the user data from the Month edit text and saving it in a string.
         mNewMonthString = mEditLastWornDateMonthET.getText().toString();
         //Checking to make sure the mNewMonthString is equal to 2 (digits). If they didn't enter
         //anything or if they only entered 1 digit, show a toast letting the user know they need to
         //check the amount of numbers they entered into the Month edit text.
         if (mNewMonthString.length() != 2) {
-            Toast.makeText(EditLastWornDate.this, getText(R.string.edit_last_worn_date_toast_wrong_length),
+            Toast.makeText(EditLastWornDate.this, getText(R.string.edit_last_worn_date_toast_wrong_month_length),
                     Toast.LENGTH_SHORT).show();
+        } else {
+            //Calling the method that will get and check the user data from the Day edit text.
+            getAndCheckDayData();
         }
+    }
 
+    //This method will get and check the user data from the Day edit text.
+    private void getAndCheckDayData() {
         //Getting the user data from the Day edit text and saving it in a string.
         mNewDayString = mEditLastWornDateDayET.getText().toString();
         //Checking to make sure the mNewDayString is equal to 2 (digits). If they didn't enter anything
         //or if they only entered 1 digit, show a toast letting the user know they need to check the
         //amount of numbers they entered into the Day edit text.
         if (mNewDayString.length() != 2) {
-            Toast.makeText(EditLastWornDate.this, getText(R.string.edit_last_worn_date_toast_wrong_length),
+            Toast.makeText(EditLastWornDate.this, getText(R.string.edit_last_worn_date_toast_wrong_day_length),
                     Toast.LENGTH_SHORT).show();
+        } else {
+            //Calling the method that will get and check the user data from the Year edit text.
+            getAndCheckYearData();
         }
+    }
 
+    //This method will get and check the user data from the Year edit text.
+    private void getAndCheckYearData() {
         //Getting the user data from the Year edit text and saving it in a string.
         mNewYearString = mEditLastWornDateYearET.getText().toString();
         //Checking to make sure the mNewYearString is equal to 4 (digits). If they didn't enter anything
         //or if they only entered 1, 2 or 3 digits, show a toast letting the user know they need to
         //check the amount of numbers they entered into the Year edit text.
         if (mNewYearString.length() != 4) {
-            Toast.makeText(EditLastWornDate.this, getText(R.string.edit_last_worn_date_toast_wrong_length),
+            Toast.makeText(EditLastWornDate.this, getText(R.string.edit_last_worn_date_toast_wrong_year_length),
                     Toast.LENGTH_SHORT).show();
+        } else {
+            //Calling the method that will take the Month, Day and Year strings and then convert it
+            //into the proper date format (MM-dd-yyyy). Then we will save that newly formatted date
+            //into the Shared Prefs before returning the user back to the MainActivity.
+            formatNewDateSaveAndExit();
         }
+    }
 
-        //TODO: make the code stop from going beyond this point if the user enters less than the
-        // required amount of digits.  Right now the code just continues on regardless of the amount
-        // of digits the user enters.
-
+    //This method will take the Month, Day and Year strings and then convert it into the proper date
+    //format (MM-dd-yyyy). Then we will save that newly formatted date into the Shared Prefs before
+    //returning the user back to the MainActivity.
+    private void formatNewDateSaveAndExit() {
         //Formatting the Month, Day and Year strings into the proper date format (MM-dd-yyyy).
         //We will save the final formatted string into the mFinalNewDateString variable.
         mFinalNewDateString = mNewMonthString + "-" + mNewDayString + "-" + mNewYearString;
