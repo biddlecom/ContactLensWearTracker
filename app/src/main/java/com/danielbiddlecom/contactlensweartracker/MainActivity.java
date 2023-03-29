@@ -212,6 +212,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        checkForColorChange();
+
     } //End of OnCreate.
 
 
