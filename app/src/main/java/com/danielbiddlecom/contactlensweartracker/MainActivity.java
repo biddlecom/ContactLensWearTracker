@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private AdView mAdView;
 
     //Getting the member variables that will hold the information in the textviews.
+    String mCurrentLensCountNowString;
     String mCurrentLensCountString;
     String mLastWornActualDateString;
     String mLastFiveSlotOneString;
@@ -163,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         //Calling the method that will check to see if this is the first time the user has opened
         //the app. (Checking to see if this is a new user).
         isTheUserNew();
+        checkForColorChange();
 
         //Google Admob ads.
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -211,8 +213,6 @@ public class MainActivity extends AppCompatActivity {
                 // covers the screen.
             }
         });
-
-        checkForColorChange();
 
     } //End of OnCreate.
 
@@ -301,6 +301,12 @@ public class MainActivity extends AppCompatActivity {
     private void checkForColorChange() {
         //Getting the Contact Lens Wear Tracker Shared Preferences.
         SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
+        //TODO TESTING
+        //Getting the mCurrentLensCountString and parsing it to turn it into an Integer and saving
+        //it into the mCurrentLensCountInteger variable.
+        mCurrentLensCountInteger = Integer.parseInt(mCurrentLensCountString);
+        //Check to see what the Integer value is and then assign the correct color to the Main Wear
+        //Status Color textview.
         if (mCurrentLensCountInteger >= 0 && mCurrentLensCountInteger <= 8) {
             mMainWearStatusColorTV.setBackgroundResource(R.color.wear_status_green);
             //Save the Current Lens Count Integer value into the Shared Preferences.
@@ -726,11 +732,8 @@ public class MainActivity extends AppCompatActivity {
             //The user is NOT new so we will get all the values from the shared preferences and put
             //them into their respective text views.
 
-            //Getting the Current Lens Count Integer from the Shared Preferences and then calling
-            //the checkForColorChange method to determine what color to set in the Wear Status
-            //text view.
+            //Getting the Current Lens Count Integer from the Shared Preferences.
             mCurrentLensCountInteger = contactLensWearSharedPreferences.getInt(mCurrentLensCountIntPref, 0);
-            checkForColorChange();
 
             //Get the value of the mCurrentLensCountPref shared preference and update the value of the
             //"Current Days Worn" text view.
