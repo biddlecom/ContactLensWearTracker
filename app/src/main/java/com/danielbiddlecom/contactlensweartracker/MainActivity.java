@@ -1,5 +1,6 @@
 package com.danielbiddlecom.contactlensweartracker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -169,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         //Google Admob ads.
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
             }
         });
 
@@ -192,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onAdFailedToLoad(LoadAdError adError) {
+            public void onAdFailedToLoad(@NonNull LoadAdError adError) {
                 // Code to be executed when an ad request fails.
             }
 
@@ -301,7 +302,6 @@ public class MainActivity extends AppCompatActivity {
     private void checkForColorChange() {
         //Getting the Contact Lens Wear Tracker Shared Preferences.
         SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
-        //TODO TESTING
         //Getting the mCurrentLensCountString and parsing it to turn it into an Integer and saving
         //it into the mCurrentLensCountInteger variable.
         mCurrentLensCountInteger = Integer.parseInt(mCurrentLensCountString);

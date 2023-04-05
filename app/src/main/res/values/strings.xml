@@ -58,7 +58,7 @@
         Refresh icon\n\nDaniel Biddlecom:\nContact Lens Wear Tracker logo</string>
 
     <!-- Privacy Policy -->
-    <string name="privacy_policy_url">https://www.stackoverflow.com</string>
+    <string name="privacy_policy_url">https://danielbiddlecom.wixsite.com/biddlecomstudios/contact-lens-wear-tracker-privacy-policy</string>
     <string name="privacy_policy_problem_opening_webpage">Sorry. It Appears The Website Could Not Load.
         Please Check Your Internet Connection And Try Again.\n \#Maximum Effort!</string>
 
