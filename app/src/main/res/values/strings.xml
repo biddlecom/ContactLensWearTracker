@@ -16,6 +16,8 @@
     <string name="main_last_worn_date">Last Worn:</string>
     <string name="main_last_worn_actual_date_placeholder">01-01-2022</string>
     <string name="main_last_worn_actual_date_no_data">No Data Yet</string>
+    <string name="main_number_format_exception_error_toast">Sorry! An error has occurred and your counter
+        may reset to zero.\n \#MaximumEffort!</string>
 
     <!-- Overflow Menu Main Activity -->
     <string name="action_prescription">Prescription</string>
@@ -47,7 +49,7 @@
 
     <!-- Credits Activity -->
     <string name="credits_logo_image_content_description">Biddlecom Studios Logo</string>
-    <string name="credits_app_info">Biddlecom Studios \nContact Lens Wear Tracker \nVersion 1.4</string>
+    <string name="credits_app_info">Biddlecom Studios \nContact Lens Wear Tracker \nVersion 1.5</string>
     <string name="credits_contact_heading">Contact:</string>
     <string name="credits_contact_email_address">daniel.biddlecom@gmail.com</string>
     <string name="credits_contact_email_subject">Contact Lens Wear Tracker</string>

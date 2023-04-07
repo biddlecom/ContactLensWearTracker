@@ -1,6 +1,5 @@
 package com.danielbiddlecom.contactlensweartracker;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -170,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         //Google Admob ads.
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
 
@@ -193,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError adError) {
+            public void onAdFailedToLoad(LoadAdError adError) {
                 // Code to be executed when an ad request fails.
             }
 
@@ -304,7 +303,14 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences contactLensWearSharedPreferences = getSharedPreferences(CONTACT_LENS_WEAR_TRACKER_PREFS, MODE_PRIVATE);
         //Getting the mCurrentLensCountString and parsing it to turn it into an Integer and saving
         //it into the mCurrentLensCountInteger variable.
-        mCurrentLensCountInteger = Integer.parseInt(mCurrentLensCountString);
+        try{
+            mCurrentLensCountInteger = Integer.parseInt(mCurrentLensCountString);
+        } catch (NumberFormatException numberFormatException){
+            mCurrentLensCountInteger = 0;
+            Toast.makeText(MainActivity.this,
+                    getString(R.string.main_number_format_exception_error_toast), Toast.LENGTH_LONG).show();
+        }
+
         //Check to see what the Integer value is and then assign the correct color to the Main Wear
         //Status Color textview.
         if (mCurrentLensCountInteger >= 0 && mCurrentLensCountInteger <= 8) {

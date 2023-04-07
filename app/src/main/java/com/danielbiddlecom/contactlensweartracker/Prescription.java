@@ -1,6 +1,5 @@
 package com.danielbiddlecom.contactlensweartracker;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 
@@ -145,7 +144,7 @@ public class Prescription extends AppCompatActivity {
         //Google Admob ads.
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
 
@@ -168,7 +167,7 @@ public class Prescription extends AppCompatActivity {
             }
 
             @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError adError) {
+            public void onAdFailedToLoad(LoadAdError adError) {
                 // Code to be executed when an ad request fails.
             }
 
