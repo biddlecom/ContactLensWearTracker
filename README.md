@@ -3,7 +3,7 @@
 
 ### Project Overview
 
-This app is a relatively simple app that will allow the user to keep track of their contact lens wear.  The user can keep track of their daily wear as well as the wear of their last 5 pairs of contact lens.  The app will automatically calculate the average wear time (in days) every time the user changes their contacts and begins using a new pair.
+This app is a relatively simple app that will allow the user to keep track of their contact lens wear.  The user can keep track of their daily wear as well as the wear of their last 5 pairs of contact lens.  The app will automatically calculate the average wear time (in days) every time the user changes their contacts and begins using a new pair.  Users have the ability to change their last worn date in the event that they forget to increment the last worn date on the day they wear their contacts.
 
 All the information that the user inputs/generates will be stored in the Shared Preferences on the users device.  This app does not use a database because the amount of information generated/saved is small and finite.
 
@@ -19,7 +19,7 @@ All the information that the user inputs/generates will be stored in the Shared 
 
 ### Technology
 
-This project was written in Java using Android Studio. It was tested and works on the most recent version of Android Studio (Artic Fox 2020.3.1).
+This project was written in Java using Android Studio. It was tested and works on the most recent version of Android Studio (Hedgehog 2023.1.1).
 
 The Android libraries in this app utilize Androidx.
 
