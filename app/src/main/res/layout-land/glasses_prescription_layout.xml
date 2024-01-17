@@ -203,7 +203,7 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/prescription_glasses_left_base_edit_text"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:hint="@string/prescription_base_hint"
         android:textColorHint="@color/gray_50_400"
@@ -214,7 +214,7 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/prescription_glasses_right_base_edit_text"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:hint="@string/prescription_base_hint"
         android:textColorHint="@color/gray_50_400"
